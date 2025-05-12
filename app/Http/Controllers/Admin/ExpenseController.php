@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+
+use App\Models\Expense;
+use Illuminate\Http\Request;
+
+
+class ExpenseController extends Controller
+{
+    public function index()
+    {
+        $expenses = Expense::all();
+        return view('admin.expense', compact('expenses'));
+    }
+
+    public function store(Request $request)
+    {
+        Expense::create($request->only(['name', 'price', 'expense_day']));
+        return redirect('/admin/expense');
+
+    }
+
+    public function edit($id)
+    {
+        return response()->json(Expense::findOrFail($id));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $expense = Expense::findOrFail($id);
+        $expense->update($request->only(['name', 'price', 'expense_day']));
+        return redirect('/admin/expense');
+
+    }
+
+    public function destroy($id)
+    {
+        Expense::destroy($id);
+        return redirect('/admin/expense');
+
+    }
+}
