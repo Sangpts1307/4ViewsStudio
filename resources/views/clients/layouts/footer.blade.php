@@ -1,15 +1,15 @@
 <style>
     ul li a {
         text-decoration: none;
-        color: #000;
+        color: white;
     }
 
     ul li a:hover {
-        color: #f00;
+        color: #a8e6cf;
     }
 
     .footer-menu {
-        margin-top: 0;
+        margin-top: 10;
         /* bỏ khoảng cách trên của danh sách */
         padding-left: 0;
         /* bỏ padding mặc định của ul */
@@ -19,7 +19,7 @@
 </style>
 
 
-<div id="footer" class="col-md-12">
+<div id="footerr" class="col-md-12">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -60,8 +60,6 @@
                     <h1 class="font-size-50"> <strong> 4ViewsStudio</strong></h1>
                 </div>
                 <p>THE BEST STUDIO</p>
-
-
             </div>
             <div class="col-md-12 margin-top-15">
                 <div class="row">
@@ -80,8 +78,13 @@
 
         </div>
     </div>
-    <hr>
-    <div class="col-md-12 text-center margin-top-15">
-        <p><i class="fa fa-copyright"> </i> <span id="year-copy-right"></span>The 4ViewsStudio - All Right Reserved</p>
+    
+    <div class="col-md-12">
+        <hr>
+        <div class="col-md-12 text-center">
+            <p><i class="fa fa-copyright"> </i> <span id="year-copy-right"></span>The 4ViewsStudio - All Right Reserved</p>
+        </div>
+        <hr>
     </div>
+
 </div>

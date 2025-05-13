@@ -79,13 +79,17 @@
         /* viền cùng màu icon */
         cursor: pointer;
     }
+    #footer {
+        border-top: 3px solid #f0f2f0;
+        padding-top: 20px;
+        background-color: #323030;
+        color: white;
+    }
 </style>
 
 <body>
     <div id="header">
         @include('clients.layouts.header')
-
-
     </div>
 
     <div id="body">

@@ -2,6 +2,7 @@
 @section('content')
 @include('clients.layouts.slider')
 
+
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-2"></div>
@@ -9,7 +10,7 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="col-md-12">
+                        <div class="col-md-12 padding-top-20 ">
                             <div class="row">
                                 <div class="col-md-2 icon-center">
                                     <i class="fa-solid fa-map-location size-icon"></i>
@@ -34,7 +35,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="col-md-12">
+                        <div class="col-md-12 padding-top-20 ">
                             <div class="row">
                                 <div class="col-md-2 icon-center">
                                     <i class="fa-solid fa-mobile size-icon"></i>
@@ -58,11 +59,13 @@
 </div>
 @endsection
 
+
 <style>
     .size-icon {
         font-size: 50px;
         color: #000;
     }
+
 
     .icon-center {
         display: flex;
@@ -71,17 +74,18 @@
         height: 100px;
     }
 
+
     .box-time-working {
-        background-color: #c1d397;
+        background: linear-gradient(to bottom, #e0f5e5, #fff8e1);
         padding: 20px;
         text-align: center;
     }
 
-    .info {
-        border: 1px solid black;
-    }
-
     .mar-top-10 {
         margin-top: 10px;
+    }
+
+    .padding-top-20 {
+        padding-top: 20px;
     }
 </style>

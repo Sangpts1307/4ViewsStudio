@@ -1,4 +1,5 @@
-<div class="col-md-12">
+<div class="conceptt">
+    <div class="col-md-12">
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
@@ -23,6 +24,7 @@
                 $mainImageFiles = glob($mainImagePath . 'main_image.*');
             @endphp
 
+
             @if (!empty($mainImageFiles))
                 @php
                     $relativePath = str_replace(public_path(), '', $mainImageFiles[0]);
@@ -33,40 +35,51 @@
             @endif
 
 
+
+
             <a href="{{ url('/clients/concept-detail/' . $concept->id) }}">
                 <button>{{ $concept->name }}</button>
             </a>
         </div>
         @endforeach
-        
+       
     </div>
 
+
+</div>
 </div>
 <style>
     .content-concept {
         margin-top: 25px;
     }
-
+    .conceptt{
+        background: linear-gradient(to bottom, #fff8e1, white);
+    }
     .box-concept {
         margin: 15px 100px 15px 100px;
     }
+
 
     .box-concept .row {
         margin-left: 120px;
     }
 
+
     .box-concept-detail {
         position: relative;
+
 
         text-align: center;
         margin: 10px;
     }
+
 
     .box-concept-detail img {
         display: block;
         width: 100%;
         height: auto;
     }
+
 
     .box-concept-detail button {
         position: absolute;
@@ -84,7 +97,11 @@
         cursor: pointer;
     }
 
+
     .box-concept-detail button:hover {
         background-color: #f0f0f0;
     }
 </style>
+
+
+
