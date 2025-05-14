@@ -2,22 +2,22 @@
 
 
 @section('content')
+
+<div class="khung">
     @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <form action="{{ url('/clients/bookingdetail') }}" method="get">
         @csrf
-        <div class="col-md-12 height-60vh mt-3">
+        <div class="col-md-12 height-60vh ">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 mt-3">
                     <div class="container d-flex justify-content-center align-items-center">
                         <div class="calendar">
                             <div class="calendar-header">
@@ -38,26 +38,24 @@
                     </div>
                 </div>
 
-
-                <div class="col-md-6">
+                <div class="col-md-6 mt-5">
                     <div class="wpbc_times_selector col-md-12">
-                        <label>Chọn ca làm việc</label>
+                        <h5><b>Chọn ca làm việc</b></h5>
                         <div class="row">
                             @foreach ($shifts as $shift)
-                                <div class="col-md-5">
-                                    <label class="shift-option form-control" for="shift{{ $shift->id }}">
-                                        <input type="radio" name="shift" id="shift{{ $shift->id }}" value="{{ $shift->id }}" required>
-                                        {{ \Carbon\Carbon::parse($shift->start_time)->format('H:i') }} -
-                                        {{ \Carbon\Carbon::parse($shift->end_time)->format('H:i') }}
-                                    </label>
-                                </div>
+                            <div class="col-md-5">
+                                <label class="shift-option form-control" for="shift{{ $shift->id }}">
+                                    <input type="radio" name="shift" id="shift{{ $shift->id }}" value="{{ $shift->id }}" required>
+                                    {{ \Carbon\Carbon::parse($shift->start_time)->format('H:i') }} -
+                                    {{ \Carbon\Carbon::parse($shift->end_time)->format('H:i') }}
+                                </label>
+                            </div>
                             @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
 
         <div class="col-md-12 height-60vh">
             <div class="row">
@@ -74,12 +72,12 @@
                         <select class="form-select" id="concept" name="concept" aria-label="Concept" required>
                             <option disabled {{ $conceptId ? '' : 'selected' }}>Chọn Concept</option>
                             @foreach ($concepts as $concept)
-                                <option value="{{ $concept->id }}" {{ $concept->id == $conceptId ? 'selected' : '' }}>
-                                    {{ $concept->name }}
-                                </option>
+                            <option value="{{ $concept->id }}" {{ $concept->id == $conceptId ? 'selected' : '' }}>
+                                {{ $concept->name }}
+                            </option>
                             @endforeach
                         </select>
-                       
+
                     </div>
                 </div>
                 <input type="hidden" name="date" id="selected-date">
@@ -96,106 +94,111 @@
                 </div>
             </div>
         </div>
-       
+
     </form>
-   
-    <script>
-        let currentDate = new Date();
-        let currentMonth = currentDate.getMonth();
-        let currentYear = currentDate.getFullYear();
+</div>
 
 
-        const months = [
-            "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6",
-            "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"
-        ];
+<script>
+    let currentDate = new Date();
+    let currentMonth = currentDate.getMonth();
+    let currentYear = currentDate.getFullYear();
 
 
-        function renderCalendar() {
-            const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
-            const firstDay = firstDayOfMonth.getDay();
-            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    const months = [
+        "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6",
+        "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"
+    ];
 
 
-            document.getElementById("month-year").textContent = `${months[currentMonth]} ${currentYear}`;
+    function renderCalendar() {
+        const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
+        const firstDay = firstDayOfMonth.getDay();
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
 
-            const calendarGrid = document.getElementById("calendar-grid");
-            while (calendarGrid.children.length > 7) {
-                calendarGrid.removeChild(calendarGrid.lastChild);
-            }
+        document.getElementById("month-year").textContent = `${months[currentMonth]} ${currentYear}`;
 
 
-            for (let i = 0; i < firstDay; i++) {
-                const emptyDiv = document.createElement("div");
-                emptyDiv.className = "empty";
-                calendarGrid.appendChild(emptyDiv);
-            }
-
-
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dayDiv = document.createElement("div");
-                dayDiv.className = "day";
-                dayDiv.textContent = day;
-
-
-                dayDiv.addEventListener("click", function () {
-                    const selectedDay = document.querySelector(".calendar-grid .selected");
-                    if (selectedDay) {
-                        selectedDay.classList.remove("selected");
-                    }
-
-
-                    dayDiv.classList.add("selected");
-
-
-                    const dayStr = String(day).padStart(2, '0');
-                    const monthStr = String(currentMonth + 1).padStart(2, '0');
-                    const dateValue = `${currentYear}-${monthStr}-${dayStr}`;
-
-
-                    document.getElementById("selected-date").value = dateValue;
-                });
-
-
-                calendarGrid.appendChild(dayDiv);
-            }
+        const calendarGrid = document.getElementById("calendar-grid");
+        while (calendarGrid.children.length > 7) {
+            calendarGrid.removeChild(calendarGrid.lastChild);
         }
 
 
-        function prevMonth() {
-            currentMonth--;
-            if (currentMonth < 0) {
-                currentMonth = 11;
-                currentYear--;
-            }
-            renderCalendar();
+        for (let i = 0; i < firstDay; i++) {
+            const emptyDiv = document.createElement("div");
+            emptyDiv.className = "empty";
+            calendarGrid.appendChild(emptyDiv);
         }
 
 
-        function nextMonth() {
-            currentMonth++;
-            if (currentMonth > 11) {
-                currentMonth = 0;
-                currentYear++;
-            }
-            renderCalendar();
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayDiv = document.createElement("div");
+            dayDiv.className = "day";
+            dayDiv.textContent = day;
+
+
+            dayDiv.addEventListener("click", function() {
+                const selectedDay = document.querySelector(".calendar-grid .selected");
+                if (selectedDay) {
+                    selectedDay.classList.remove("selected");
+                }
+
+
+                dayDiv.classList.add("selected");
+
+
+                const dayStr = String(day).padStart(2, '0');
+                const monthStr = String(currentMonth + 1).padStart(2, '0');
+                const dateValue = `${currentYear}-${monthStr}-${dayStr}`;
+
+
+                document.getElementById("selected-date").value = dateValue;
+            });
+
+
+            calendarGrid.appendChild(dayDiv);
+        }
+    }
+
+
+    function prevMonth() {
+        currentMonth--;
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
         }
         renderCalendar();
+    }
 
 
-        document.querySelectorAll('input[name="shift"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                document.querySelectorAll('.shift-option').forEach(label => {
-                    label.classList.remove('selected');
-                });
-                this.closest('label').classList.add('selected');
+    function nextMonth() {
+        currentMonth++;
+        if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+        renderCalendar();
+    }
+    renderCalendar();
+
+
+    document.querySelectorAll('input[name="shift"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            document.querySelectorAll('.shift-option').forEach(label => {
+                label.classList.remove('selected');
             });
+            this.closest('label').classList.add('selected');
         });
-    </script>
+    });
+</script>
 
 
 <style>
+    .khung {
+        background: linear-gradient(to bottom, #fff8e1, white);
+    }
     .calendar {
         background-color: white;
         padding: 20px;
@@ -293,7 +296,7 @@
     .height-60vh {
         height: 60vh;
     }
-   
+
     .margin-left-w {
         margin-left: 17.5%;
         width: 65%;
@@ -341,6 +344,3 @@
     }
 </style>
 @endsection
-
-
-

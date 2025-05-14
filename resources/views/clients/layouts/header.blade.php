@@ -8,29 +8,29 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="{{ url('/clients/home') }}">Trang chủ</a></li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item"><a class="nav-link" href="{{ url('clients/info') }}">Thông tin cá nhân</a></li>
+                    <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" >Người
                             dùng</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="login.blade.php">Đăng nhập, đăng kí</a></li>
                             <li><a class="dropdown-item" href="{{ url('clients/info') }}">Thông tin cá nhân</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="{{ url('/clients/concept') }}" >Gói chụp
-                            hình</a>
+                        <a class="nav-link dropdown-toggle" href="{{ url('/clients/concept') }}" >Gói chụp hình</a>
                         <ul class="dropdown-menu">
                             @foreach ($concepts_header as $concept_header)
-                            <li><a class="dropdown-item" href="{{ url('/clients/concept-detail/'.$concept_header->id) }}">{{ $concept_header->name }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/clients/concept-detail/'.$concept_header->id) }}">
+                                {{ $concept_header->name }}
+                            </a></li>
                             @endforeach
-                          
-                           
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{{ url('/clients/booking') }}" >Booking</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Đặt lịch</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/clients/booking') }}">Đặt lịch</a></li>
                             <li><a class="dropdown-item" href="{{ url('/clients/appointments') }}">Lịch hẹn của tôi</a></li>
                         </ul>
                     </li>
@@ -75,10 +75,13 @@
     </div>
 </div>
 <style>
-    /* Khi trỏ chuột vào li.dropdown thì hiển thị menu con */
-.nav-item.dropdown:hover .dropdown-menu {
-    display: block;
-    margin-top: 0; /* Tránh lệch menu */
-}
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .dropdown-item:hover {
+        color: #0068ff !important;
+    }
 
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
 </style>

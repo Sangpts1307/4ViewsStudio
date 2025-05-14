@@ -1,60 +1,58 @@
 <div class="conceptt">
     <div class="col-md-12">
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="content-concept text-center">
-                        <h4>DỊCH VỤ CHỤP HÌNH TẠI 4VIEWS STUDIO</h4>
-                        <p>Dưới đây là những concept chụp siêu hot của Studio</p>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="content-concept text-center">
+                            <h4>DỊCH VỤ CHỤP HÌNH TẠI 4VIEWS STUDIO</h4>
+                            <p>Dưới đây là những concept chụp siêu hot của Studio</p>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="col-md-2"></div>
         </div>
-        <div class="col-md-2"></div>
     </div>
-</div>
-<div class="col-md-12 box-concept">
-    <div class="row">
-        @foreach($concepts as $concept)
-        <div class="col-md-3 box-concept-detail">
-            @php
+    <div class="col-md-12 box-concept">
+        <div class="row">
+            @foreach($concepts as $concept)
+            <div class="col-md-3 box-concept-detail">
+                @php
                 $mainImagePath = public_path("image/concepts/concept_{$concept->id}/main_images/");
                 $mainImageFiles = glob($mainImagePath . 'main_image.*');
-            @endphp
+                @endphp
 
 
-            @if (!empty($mainImageFiles))
+                @if (!empty($mainImageFiles))
                 @php
-                    $relativePath = str_replace(public_path(), '', $mainImageFiles[0]);
+                $relativePath = str_replace(public_path(), '', $mainImageFiles[0]);
                 @endphp
                 <img src="{{ asset(ltrim($relativePath, '/')) }}" alt="Ảnh chính" class="image-concept">
-            @else
+                @else
                 <img src="{{ asset('image/avt.png') }}" alt="Ảnh mặc định" class="image-concept">
-            @endif
+                @endif
+                <a href="{{ url('/clients/concept-detail/' . $concept->id) }}">
+                    <button>{{ $concept->name }}</button>
+                </a>
+            </div>
+            @endforeach
 
-
-
-
-            <a href="{{ url('/clients/concept-detail/' . $concept->id) }}">
-                <button>{{ $concept->name }}</button>
-            </a>
         </div>
-        @endforeach
-       
+
+
     </div>
-
-
-</div>
 </div>
 <style>
     .content-concept {
-        margin-top: 25px;
+        margin-top: 20px;
     }
-    .conceptt{
+
+    .conceptt {
         background: linear-gradient(to bottom, #fff8e1, white);
     }
+
     .box-concept {
         margin: 15px 100px 15px 100px;
     }
@@ -102,6 +100,3 @@
         background-color: #f0f0f0;
     }
 </style>
-
-
-

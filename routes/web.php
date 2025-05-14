@@ -56,7 +56,6 @@ Route::group(['middleware' => 'checkLogin'], function () {
 
 
 
-
         Route::get('/contracts/create', [\App\Http\Controllers\Admin\ContractController::class, 'create']);
         Route::post('/contracts/store', [\App\Http\Controllers\Admin\ContractController::class, 'store']);
         Route::get('/contract', [\App\Http\Controllers\Admin\ContractController::class, 'index']);
@@ -87,6 +86,7 @@ Route::group(['middleware' => 'checkLogin'], function () {
         Route::get('/booking', [App\Http\Controllers\Client\BookingController::class, 'showBookingForm']);
         Route::get('/bookingdetail', [App\Http\Controllers\Client\BookingController::class, 'processBooking']);
       //  Route::post('/bookingdetail', [App\Http\Controllers\Client\BookingController::class, 'showBookingDetailPage']);
+      Route::get('/contact', [\App\Http\Controllers\Client\ContactController::class, 'index']);
     });
 });
 

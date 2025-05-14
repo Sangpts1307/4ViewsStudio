@@ -2,7 +2,9 @@
 @section('content')
 <div class="khung">
     <div class="container trong-khung">
-        <h1 class="text-center margin-bottom-50px">LỊCH HẸN CỦA TÔI</h1>
+        <h2 class="text-center margin-bottom-50px">
+            <i class="fa-regular fa-calendar-check"></i> LỊCH HẸN CỦA TÔI
+        </h2>
         <table class="table table-hover table-bordered text-center">
             <thead class="table-light">
                 <tr>
@@ -65,7 +67,7 @@
         justify-content: center;
         align-items: center;
         min-height: 700px;
-        background: #f8f9fa;
+        background-color: #fff8e1;
         padding-bottom: 100px;
     }
 

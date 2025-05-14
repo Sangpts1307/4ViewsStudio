@@ -2,7 +2,9 @@
 @section('content')
 <div class="khung">
     <div class="container rounded trong-khung">
-        <h1 class="text-center mb-5">Liên hệ</h1>
+        <h2 class="text-center mb-5">
+            <i class="fa-solid fa-location-dot"></i> LIÊN HỆ
+        </h2>
         <div class="row">
             <div class="col-md-6 mb-5">
                 <p class="fs-5 mb-4 text-secondary">
@@ -37,7 +39,7 @@
 
 <style>
     .khung {
-        background-color: #f8f9fa;
+        background-color: #fff8e1;
         padding-top: 3rem;
         padding-bottom: 3rem;
     }
@@ -47,9 +49,9 @@
         padding: 3rem; 
     }
     .map {
-    border-radius: 0.5rem;
-    overflow: hidden;
-    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.075);
-    border: 1px solid #dee2e6;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        box-shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.075);
+        border: 1px solid #dee2e6;
     }
 </style>

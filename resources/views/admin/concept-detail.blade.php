@@ -152,6 +152,10 @@
 
 
 <style>
+    /* .content {
+                background: linear-gradient(to bottom, #fff8e1, white);
+
+    } */
     .margin-top-10 {
         margin-top: 10px;
     }
