@@ -27,6 +27,7 @@ class GoogleCalendarService
         // Init Google client
         $client = new Client();
         $client->setAuthConfig(storage_path('google_credenticals.json'));
+        // dd(storage_path('google_credenticals.json'));
         $client->addScope(Calendar::CALENDAR_EVENTS);
         $this->calendar = new Calendar($client);
     }
@@ -66,9 +67,11 @@ class GoogleCalendarService
      * @param array $attendeesEmails Participant email list.
      * @return false|string event link.
      */
-    public function createEvent($summary, $description, $startTime, $endTime, $attendeesEmails = [])
+    public function createEvent($summary, $description, $startTime, $endTime, $attendeesEmails = [], $calendarId)
     {
         try {
+            $startTime = (new \DateTime("$startTime"))->format(\DateTime::RFC3339);
+            $endTime = (new \DateTime("$endTime"))->format(\DateTime::RFC3339);
             // Init new event.
             $event = new Event([
                 'summary' => $summary,
@@ -84,12 +87,16 @@ class GoogleCalendarService
                 'attendees' => array_map(fn ($email) => ['email' => $email], $attendeesEmails),
             ]);
             // Create an event on Google Calendar.
-            $event = $this->calendar->events->insert(config('services.google.calendar_id'), $event);
+            // $event = $this->calendar->events->insert(config('services.google.calendar_id'), $event);
+            $event = $this->calendar->events->insert($calendarId, $event);
+
             // Return this event link.
             return $event->htmlLink;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+             dd($e);
             return false;
+           
         }
     }
 

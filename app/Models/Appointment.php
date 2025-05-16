@@ -12,6 +12,8 @@ class Appointment extends Model
     const STATUS_WAIT = 0;
     const STATUS_DONE = 1;
     const STATUS_CONFIRMED = 2;
+    const STATUS_ASYNC = 3;
+    // Thứ tự: 0--2--3--1
 
     protected $table = 'appointments';
 

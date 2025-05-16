@@ -6,12 +6,17 @@ use App\Models\User;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\GoogleCalendarService;
+use Carbon\Carbon;
+use Google\Service\AdMob\App;
+
+use function Laravel\Prompts\form;
 
 class AppointmentController extends Controller
 {
     public function index()
     {
-        $appointments = Appointment::with(['user', 'concept', 'shift', 'staff'])->get();
+        $appointments = Appointment::with(['user', 'concept', 'shift', 'staff'])->orderBy('work_day', 'DESC')->get();
         foreach ($appointments as $appointment) {
             $availableStaffs = User::where('role', User::ROLE_STAFF)
                 ->whereIn('id', function ($query) use ($appointment) {
@@ -49,7 +54,7 @@ class AppointmentController extends Controller
         } else {
             $appointment->staff_id = $request->staff_id;
         }
-
+        $appointment->status = Appointment::STATUS_CONFIRMED;
         $appointment->save();
 
         return redirect()->back()->with('success', 'Thợ chụp cập nhật thành công.');
@@ -89,5 +94,49 @@ class AppointmentController extends Controller
             $appointment->setRelation('availableStaffs', $availableStaffs);
         }
         return view('admin.appointment-sche', compact('appointments'));
+    }
+
+    public function async(Request $request, $id)
+    {
+        $param = $request->all();
+        $query = Appointment::with(['user', 'staff', 'concept', 'shift'])
+            ->find($id);
+        $googleCalendarService = new GoogleCalendarService();
+        $googleCalendarService->getEvents();
+        $workDay = Carbon::create($query->work_day)->format('Y-m-d');
+
+        // async admin-calendar
+        $googleCalendarService->createEvent(
+            $query->concept->name, $query->concept->short_content, 
+            $workDay . ' ' . $query->shift->start_time, $workDay . ' ' . $query->shift->end_time,
+            [], config('services.google.calendar_id')
+        );
+        // async staff-calendar
+        $googleCalendarService->createEvent(
+            $query->concept->name, $query->concept->short_content, 
+            $workDay . ' ' . $query->shift->start_time, $workDay . ' ' . $query->shift->end_time,
+            [], $query->staff->email
+        );
+        // async user-calendar
+        $googleCalendarService->createEvent(
+            $query->concept->name, $query->concept->short_content, 
+            $workDay . ' ' . $query->shift->start_time, $workDay . ' ' . $query->shift->end_time,
+            [], $query->user->email
+        );
+        
+        /** async if use google workspace and change tham so dau vao trong service*/ 
+        // $googleCalendarService->createEvent(
+        //     $query->concept->name, $query->concept->short_content, 
+        //     $workDay . ' ' . $query->shift->start_time, $workDay . ' ' . $query->shift->end_time,
+        //     // here is email of staff and user
+        //     [
+        //         $query->staff->email,
+        //         $query->user->email
+        //     ]
+        // );
+        $query->status = Appointment::STATUS_ASYNC;
+        $query->save();
+        
+        return redirect('/admin/appointment-sche');
     }
 }

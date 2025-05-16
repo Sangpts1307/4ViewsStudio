@@ -36,7 +36,7 @@ class AppointmentController extends Controller
 
         $appointments = Appointment::with(['staff', 'concept', 'shift'])
             ->where('user_id', $userId)
-            ->orderBy('work_day', 'asc')
+            ->orderBy('work_day', 'desc')
             ->get();
 
         return view('clients.appointment', compact('appointments'));

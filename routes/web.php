@@ -53,6 +53,7 @@ Route::group(['middleware' => 'checkLogin'], function () {
         Route::get('/appointment-sche', [\App\Http\Controllers\Admin\AppointmentController::class, 'index']);
       Route::post('/appointment-sche', [\App\Http\Controllers\Admin\AppointmentController::class, 'assignStaff']);
         Route::get('/appointments/search', [\App\Http\Controllers\Admin\AppointmentController::class, 'search']);
+        Route::get('/appointments/async/{id}', [\App\Http\Controllers\Admin\AppointmentController::class, 'async']);
 
 
 
