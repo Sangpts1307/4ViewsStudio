@@ -38,7 +38,4 @@ class Appointment extends Model
     public function shift(){
         return $this->belongsTo(Shift::class, 'shift_id');
     }
-
-   
-
 }

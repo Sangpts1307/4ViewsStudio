@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-flex justify-content-center align-items-center mt-3" style="min-height: 0vh;">
-        <div class="w-90">
+        <div class="w-95">
             <h2>Thông tin khách hàng</h2>
 
             <form action="{{ url('/admin/clients/search') }}" method="GET">
@@ -54,8 +54,8 @@
     </div>
 
     <style>
-        .w-90 {
-            width: 90%;
+        .w-95 {
+            width: 95%;
             border: 1px solid #ccc;
             padding: 20px;
             border-radius: 5px;

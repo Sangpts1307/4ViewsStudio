@@ -1,9 +1,11 @@
 @extends('admin.index')
 
 @section('content')
+
+
     <form action="{{ url('/admin/clients/show/' . $client->id) }}" method="GET">
         <div class="d-flex justify-content-center align-items-center" style="min-height: auto;">
-            <div class="w-90">
+            <div class="w-95">
                 <h2 class="">Chi tiết hồ sơ khách hàng</h2>
                 <div class="col-md-6 margin-top-2">
                     <div class="row">
@@ -43,8 +45,8 @@
     </form>
 
     <style>
-        .w-90 {
-            width: 90%;
+        .w-95 {
+            width: 95%;
             border: 1px solid #ccc;
             padding: 20px;
             border-radius: 5px;

@@ -23,7 +23,7 @@
             </div>
         </form>
         <div class="table-div">
-            <table class="tbl-appointment">
+            <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>STT</th>

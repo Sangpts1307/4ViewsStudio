@@ -15,13 +15,15 @@ class PrintContractController extends Controller
 {
     public function index(Request $request, $contractId)
     {
-        $contract = Contract::with('appointment')->where('id', $contractId)->first();
+        $contract = Contract::with('appointment')
+        
+        ->where('id', $contractId)->first();
 
         $work_day = Carbon::parse($contract->appointment->work_day)->format('d-m-Y');
         $user = User::find($contract->appointment->user_id);
         $concept = Concept::find($contract->appointment->concept_id);
 
-        $pdf = Pdf::loadView('admin.print-contract', compact('contract'));
+        $pdf = Pdf::loadView('admin.print-contract', compact('contract', 'user', 'concept', 'work_day'));
 
         // Tạo tên file PDF
         $fileName = $work_day . '-' . $user->name . '-' . $concept->name . '.pdf';

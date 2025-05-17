@@ -4,7 +4,8 @@
 @if(session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
 @endif
-
+<div class="d-flex justify-content-center align-items-center mt-3">
+    <div class="w-95">
 <div id="header" class="col-md-12 mb-3">
     <div class="d-flex justify-content-between align-items-center">
         
@@ -49,7 +50,7 @@
         </div>
     </form>
     <div class="table-contract">
-        <table class="table table-bordered">
+        <table class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>STT</th>
@@ -83,7 +84,7 @@
                             <td>{{ '0' }}</td>
                         @endif
                         <td>
-                            <a href="{{ url('/admin/contract/print/'.$contract->id) }}" class="btn btn-secondary"><i class="fa-solid fa-print"></i></a>
+                            <a href="{{ url('/admin/contract/print/'.$contract->id) }}"  target="_blank" class="btn btn-secondary"><i class="fa-solid fa-print"></i></a>
                         </td>
                     </tr>
                 @empty
@@ -96,8 +97,21 @@
         </table>
     </div>
 </div>
+    </div>
+
+</div>
 
 <style>
+       .w-95 {
+        width: 95%;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        margin: 0 auto;
+        background-color: #f8f9fa;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
     .table-contract {
         margin: 20px 10px 10px 10px;
     }

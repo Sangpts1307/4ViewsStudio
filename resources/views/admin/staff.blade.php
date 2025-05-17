@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-flex justify-content-center align-items-center">
-        <div class="w-90">
+        <div class="w-95">
             <h2>Quản lý nhân viên</h2>
 
 
@@ -27,7 +27,8 @@
                                     <td>{{ $staff->phone }}</td>
                                     <td>{{ $staff->email }}</td>
                                     <td>{{ $staff->address }}</td>
-                                    <td>{{ $staff->birth_date }}</td>
+                                    <td>{{ \Carbon\Carbon::create($staff->birth_date)->format('d-m-Y') }}</td>
+
                                     <td hidden><input type="hidden" class="account_number" value="{{ $staff->account_number }}"></td>
 
                                     <td>
@@ -65,19 +66,19 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Họ tên</label>
-                                <input type="text" id="modal-name" name="name" class="form-control">
+                                <input type="text" id="modal-name" name="name" class="form-control" required>
                                 <label>Số điện thoại</label>
-                                <input type="text" id="modal-phone" name="phone" class="form-control">
+                                <input type="text" id="modal-phone" name="phone" class="form-control" required>
                                 <label>Ngày sinh</label>
-                                <input type="date" id="modal-birth_date" name="birth_date" class="form-control">
+                                <input type="date" id="modal-birth_date" name="birth_date" class="form-control" required>
                             </div>
                             <div class="col-md-6">
                                 <label>Email</label>
-                                <input type="email" id="modal-email" name="email" class="form-control">
+                                <input type="email" id="modal-email" name="email" class="form-control" required>
                                 <label>Địa chỉ</label>
-                                <input type="text" id="modal-address" name="address" class="form-control">
+                                <input type="text" id="modal-address" name="address" class="form-control" required>
                                 <label>Số tài khoản</label>
-                                <input type="text" id="modal-account_number" name="account_number" class="form-control">
+                                <input type="text" id="modal-account_number" name="account_number" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -144,7 +145,17 @@
             document.getElementById('modal-phone').value = cells[1].innerText.trim();
             document.getElementById('modal-email').value = cells[2].innerText.trim();
             document.getElementById('modal-address').value = cells[3].innerText.trim();
-            document.getElementById('modal-birth_date').value = cells[4].innerText.trim();
+           let rawDate = cells[4].innerText.trim(); // "16-5-2025"
+let parts = rawDate.split('-'); // ["16", "5", "2025"]
+
+let day = parts[0].padStart(2, '0');    // "16" -> "16"
+let month = parts[1].padStart(2, '0');  // "5" -> "05"
+let year = parts[2];                    // "2025"
+
+let formattedDate = `${year}-${month}-${day}`; // "2025-05-16"
+
+document.getElementById('modal-birth_date').value = formattedDate;
+
             document.getElementById('modal-account_number').value = row.querySelector('.account_number').value;
 
 
@@ -179,8 +190,8 @@
             width: 100%;
         }
 
-        .w-90 {
-            width: 90%;
+        .w-95 {
+            width: 95%;
             border: 1px solid #ccc;
             padding: 20px;
             border-radius: 5px;
@@ -211,6 +222,9 @@
         .btn-primary a:hover,
         .btn-danger a:hover {
             color: white;
+        }
+        button a {
+            text-decoration: none;
         }
     </style>
 @endsection

@@ -1,6 +1,9 @@
 @extends('admin.index')
 
 @section('content')
+
+<div class="d-flex justify-content-center align-items-center mt-3">
+    <div class="w-95">
 <div id="header">
     <h2><i class="fa-solid fa-money-check-dollar"></i> Trả lương nhân viên</h2>
 </div>
@@ -69,6 +72,10 @@
         </table>
     </div>
 </div>
+    </div>
+
+</div>
+
 <script>
     document.getElementById('month').addEventListener('change', function () {
         document.getElementById('month-form').submit();
@@ -76,6 +83,16 @@
 </script>
 
 <style>
+       .w-95 {
+        width: 95%;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        margin: 0 auto;
+        background-color: #f8f9fa;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
     .export-excel {
         display: flex;
         justify-content: flex-end; 

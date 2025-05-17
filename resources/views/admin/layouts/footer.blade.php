@@ -8,22 +8,28 @@
         color: #f00;
     }
 
-    .footer-menu {
-        margin-top: 0;
-        /* bỏ khoảng cách trên của danh sách */
-        padding-left: 0;
-        /* bỏ padding mặc định của ul */
-        list-style: none;
-        /* nếu bạn không muốn dấu chấm tròn */
-    }
+    
+
+#footer {
+    display: flex;
+    justify-content: center;   /* Căn giữa ngang */
+    align-items: center;       /* Căn giữa dọc */
+    height: 10vh;
+
+    border-top: 3px solid #f0f2f0;
+    background: #323030;
+    color: white;
+    text-align: center;
+}
+
+    
 </style>
 
-
-<div id="footer" class="col-md-12" style="background-color: #f8f9fa; ">
-    
-   
-    <div class="col-md-12 text-center" style="padding-top: 20px;">
-        
-        <p><i class="fa fa-copyright"> </i> <span id="year-copy-right"></span>The 4ViewsStudio - All Right Reserved</p>
-    </div>
+<div id="footer">
+    <p>
+        <i class="fa fa-copyright"></i>
+        <span id="year-copy-right"></span>
+        The 4ViewsStudio - All Right Reserved
+    </p>
 </div>
+

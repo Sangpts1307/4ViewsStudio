@@ -1,7 +1,8 @@
 @extends('staff.index')
 
 @section('content')
-
+<div class="d-flex justify-content-center align-items-center mt-3">
+    <div class="w-95">
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-4">
@@ -57,8 +58,21 @@
         
     </div>
 </div>
+    </div>
+
+</div>
 
 <style>
+       .w-95 {
+        width: 95%;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        margin: 0 auto;
+        background-color: #f8f9fa;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
     .w-80 {
         width: 80%;
         margin: 0 auto;

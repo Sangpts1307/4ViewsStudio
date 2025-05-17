@@ -66,7 +66,8 @@
         align-items: center;
         min-height: 100vh;
         font-family: 'Jost', sans-serif;
-        background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+        background: linear-gradient(to bottom, #f5e4e6,#a2d1cc, #f1f4c3);
+
     }
 
     .auth-container .main {
@@ -89,7 +90,7 @@
     }
 
     .auth-container label {
-        color: #fff;
+        color: #3aa89b;
         font-size: 2.8em;
         justify-content: center;
         display: flex;
@@ -120,7 +121,8 @@
         justify-content: center;
         display: block;
         color: #fff;
-        background: #573b8a;
+        /* background: #573b8a; tím */
+        background-color: #3aa89b;
         font-size: 1.2em;
         font-weight: bold;
         margin-top: 35px;
@@ -132,7 +134,8 @@
     }
 
     .auth-container button:hover {
-        background: #6d44b8;
+        /* background: #6d44b8; */
+        background-color: #5fc1b3;
     }
 
     .auth-container .login {
@@ -144,7 +147,8 @@
     }
 
     .auth-container .login label {
-        color: #573b8a;
+        /* color: #573b8a; */
+        color: #3aa89b;
         transform: scale(.6);
     }
 

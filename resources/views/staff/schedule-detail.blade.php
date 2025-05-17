@@ -1,6 +1,9 @@
 @extends('staff.index')
 
 @section('content')
+
+<div class="d-flex justify-content-center align-items-center mt-3">
+    <div class="w-95">
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-4">
@@ -36,7 +39,7 @@
                             <td>{{ $schedule->shift->start_time . ' - ' . $schedule->shift->end_time }}</td>
                             <td>{{ $schedule->user->name }}</td>
                             <td>{{ $schedule->concept->name }}</td>
-                            @if ($schedule->status == 0)
+                            @if ($schedule->status != \App\Models\Appointment::STATUS_DONE)
                             <td>
                             <a href="{{ url('/staff/schedule-detail?date='.$date.'&appointment_id='.$schedule->id) }}" class="btn btn-primary add-link" >
                                 <i class="fa-solid fa-plus"></i> Gắn link ảnh
@@ -157,7 +160,11 @@
             </div>
         </div>
     </div>
+
 @endif
+    </div>
+
+</div>
 
 <script>
     function closePopup() {
@@ -165,6 +172,16 @@
     }
 </script>
     <style>
+           .w-95 {
+        width: 95%;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        margin: 0 auto;
+        background-color: #f8f9fa;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
         .w-90 {
             width: 90%;
             margin: 0 auto;

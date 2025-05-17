@@ -1,6 +1,9 @@
 @extends('admin.index')
 
 @section('content')
+
+<div class="d-flex justify-content-center align-items-center mt-3">
+    <div class="w-95">
     <div id="header">
         <h2><i class="fa-solid fa-circle-info"></i> Chi tiết "Tên concept"</h2>
         @if(session('error'))
@@ -88,6 +91,9 @@
     </form>
 
     </div>
+    </div>
+
+</div>
 
 <script>
     function previewMainImage(event) {
@@ -156,6 +162,16 @@
                 background: linear-gradient(to bottom, #fff8e1, white);
 
     } */
+        .w-95 {
+        width: 95%;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        margin: 0 auto;
+        background-color: #f8f9fa;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
     .margin-top-10 {
         margin-top: 10px;
     }

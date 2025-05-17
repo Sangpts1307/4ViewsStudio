@@ -55,7 +55,8 @@
 
     @if (request()->has('shift_id') && request()->has('date'))
         <div class="modal" tabindex="-1" style="display: flex;">
-            <div class="modal-dialog">
+          <div class="modal-dialog modal-lg" >
+
                 <div class="modal-content">
                     <form action="{{ url('/admin/save-schedule') }}" method="POST">
                         @csrf
@@ -123,12 +124,14 @@
             });
         });
     });
+
 </script>
 
 
 @endsection
 
 <style>
+  
     body {
         font-family: Arial, sans-serif;
         margin: 0;
