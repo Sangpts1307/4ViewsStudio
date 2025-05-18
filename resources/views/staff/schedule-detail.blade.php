@@ -47,7 +47,7 @@
                         </td>
                                 <td>Chưa hoàn thành</td>
                             @else
-                                <td><a href="{{ $schedule->link_image }}">Link ảnh</a></td>
+                                <td><a href="{{ $schedule->link_image }}" target="_blank">Link ảnh</a></td>
                                 <td>Đã hoàn thành</td>
                             @endif
                         </tr>
@@ -102,7 +102,7 @@
                                     <p>Người nhận</p>
                                 </div>
                                 <div class="col-md-9">
-                                    <input type="text" name="name" class="form-control" placeholder="Người nhận" value="{{ $information->user->name }}">
+                                    <input type="text" name="name" class="form-control" placeholder="Người nhận" value="{{ $information->user->name }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -113,7 +113,7 @@
                                 </div>
                                 <div class="col-md-9">
         
-                                    <input type="email" class="form-control" placeholder="Email" name="email" value="{{ $information->user->email }}">
+                                    <input type="email" class="form-control" placeholder="Email" name="email" value="{{ $information->user->email }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                                     <p>Concept</p>
                                 </div>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" placeholder="Concept" name="concept" value="{{ $information->concept->name }}">
+                                    <input type="text" class="form-control" placeholder="Concept" name="concept" value="{{ $information->concept->name }}" readonly>
                                    
                                 </div>
                             </div>
@@ -151,7 +151,6 @@
                         </div>
                       
                     </div>
-
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" onclick="closePopup()">Đóng</button>
                         <button type="submit" class="btn btn-primary">Lưu</button>

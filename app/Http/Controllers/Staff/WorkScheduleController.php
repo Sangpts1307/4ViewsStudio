@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
+use App\Mail\MailLinkImage;
 use App\Models\Appointment;
+use App\Models\Concept;
 use App\Models\Contract;
 use App\Models\Shift;
-
-use App\Models\Work_Schedule;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class WorkScheduleController extends Controller
 {
@@ -98,9 +100,34 @@ class WorkScheduleController extends Controller
         $appointment->status = Appointment::STATUS_DONE;
         $appointment->save();
         
+        $staff = User::find($appointment->staff_id);
+        $concept = Concept::find($appointment->concept_id);
+        $shift = Shift::find($appointment->shift_id);
+        $user = User::find($appointment->user_id);
+
         $contract = Contract::find($appointmentId);
         $contract->role = Contract::STATUS_PAID;
         $contract->save();
+
+        // Send mail
+        try {
+            $workDay = Carbon::create($date)->format('d-m-Y');
+            $startTime = Carbon::parse($shift->start_time)->format('H:i');
+            $endTime = Carbon::parse($shift->end_time)->format('H:i');
+
+            $mailLinkImage = new MailLinkImage();
+            $mailLinkImage->setStaff($staff->name);
+            $mailLinkImage->setConcept($concept->name);
+            $mailLinkImage->setWorkDay($workDay);
+            $mailLinkImage->setShift($startTime . ' - ' . $endTime);
+            $mailLinkImage->setLinkImage($appointment->link_image);
+            $mailLinkImage->setMessage($appointment->reply);
+            // dd($staff->name, $concept->name, $startTime . ' - ' . $endTime, $appointment->link_image, $appointment->reply);
+            
+            Mail::to($user->email)->send($mailLinkImage);
+        } catch (\Exception $e) {
+            dd($e);
+        }
         return redirect('/staff/schedule-detail?date='.$date);
     }
 }

@@ -11,7 +11,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
        
       <title>4Views Studio</title>
-      <link rel="icon" type="image/x-icon" href="/avt.ico" >
+      <link rel="icon" type="image/x-icon" href="/avt.ico">
 </head>
 <body>
     <div class="col-md-12">
