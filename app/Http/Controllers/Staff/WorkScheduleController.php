@@ -81,8 +81,6 @@ class WorkScheduleController extends Controller
             if($request->filled('appointment_id')){
                 
                 $appointmentId = $request->input('appointment_id');
-              
-
                 $information = Appointment::with(['concept', 'shift', 'user'])->find($appointmentId)  
                 ;
             }
@@ -128,6 +126,7 @@ class WorkScheduleController extends Controller
         } catch (\Exception $e) {
             dd($e);
         }
-        return redirect('/staff/schedule-detail?date='.$date);
+        return redirect('/staff/schedule-detail?date='.$date)
+            ->with('success', 'Đã gửi ảnh đến khách hàng!');
     }
 }

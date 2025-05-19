@@ -50,7 +50,7 @@
     }
 
     .form-concept {
-        background-color: #d49cc6;
+        background: linear-gradient(to bottom, #e0f5e5, #fff8e1);
         padding: 20px;
         border-radius: 5px;
         margin-bottom: 20px;
@@ -80,7 +80,7 @@
 
     .add-concept {
         font-size: 50px;
-        color: #fff;
+        color: black;
         text-decoration: none;
         height: 100%;
         width: 100%;

@@ -76,8 +76,8 @@
 
                         @if ($contract->role == \App\Models\Contract::STATUS_DEBT)
                             <td>{{ $contract->price ?? '0' }}</td>
-                            <td>{{ $contract->price * 0.3 ?? '0' }}</td>
-                            <td>{{ ($contract->price * 0.7) ?? '0' }}</td>
+                            <td>{{ $contract->price * \App\Models\Contract::SCALE_DEPOSIT ?? '0' }}</td>
+                            <td>{{ ($contract->price * \App\Models\Contract::SCALE_DEBIT) ?? '0' }}</td>
                         @else 
                             <td>{{ $contract->price ?? '0' }}</td>
                             <td>{{ $contract->price ?? '0' }}</td>

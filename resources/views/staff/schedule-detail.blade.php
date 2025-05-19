@@ -1,7 +1,19 @@
 @extends('staff.index')
 
 @section('content')
-
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@elseif (session('update'))
+    <div class="alert alert-success">
+        {{ session('update') }}
+    </div>
+@elseif (session('error'))
+    <div class="alert alert-success">
+        {{ session('error') }}
+    </div>
+@endif
 <div class="d-flex justify-content-center align-items-center mt-3">
     <div class="w-95">
     <div class="col-md-12">
@@ -36,7 +48,9 @@
                 <tbody>
                     @foreach ($schedules as $schedule)
                         <tr>
-                            <td>{{ $schedule->shift->start_time . ' - ' . $schedule->shift->end_time }}</td>
+                            <td>{{ \Carbon\Carbon::parse($schedule->shift->start_time)->format('H:i') }} 
+                                - {{ \Carbon\Carbon::parse($schedule->shift->end_time)->format('H:i') }}
+                            </td>
                             <td>{{ $schedule->user->name }}</td>
                             <td>{{ $schedule->concept->name }}</td>
                             @if ($schedule->status != \App\Models\Appointment::STATUS_DONE)
@@ -71,7 +85,9 @@
                 <tbody>
                     @foreach ($shifts as $shift)
                         <tr>
-                            <td>{{ $shift->start_time . ' - ' . $shift->end_time }}</td>
+                            <td>{{ \Carbon\Carbon::parse($shift->start_time)->format('H:i') }} 
+                                - {{ \Carbon\Carbon::parse($shift->end_time)->format('H:i') }}
+                            </td>
                             <td colspan="4">Chưa có dữ liệu</td>
                         </tr>
                     @endforeach

@@ -33,6 +33,20 @@
 
     
 </body>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table th,
+    table td,
+    .table-bordered {
+        border: 1px solid #000;
+        padding: 10px;
+        text-align: center;
+    }
+</style>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">

@@ -54,7 +54,7 @@
             </form>
 
             <div class="table-expense">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>Tên danh mục</th>

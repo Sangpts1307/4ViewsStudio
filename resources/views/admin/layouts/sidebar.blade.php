@@ -126,12 +126,13 @@
     .menu ul li:hover {
         color: white;
     }
-.button-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: end;
-    padding-bottom: 20px;
-}
+
+    .button-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        padding-bottom: 20px;
+    }
 
     .btn-logout {
         bottom: 20px;

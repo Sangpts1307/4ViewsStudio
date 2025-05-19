@@ -46,9 +46,9 @@
                         <td>{{ $appointment->user->name ?? 'N/A' }}</td>
                         <td>{{ $appointment->user->phone ?? 'N/A' }}</td>
                         <td>{{ $appointment->concept->name ?? 'N/A' }}</td>
-                        <th>{{ \Carbon\Carbon::parse($appointment->shift->start_time)->format('H:i') }} -
+                        <td>{{ \Carbon\Carbon::parse($appointment->shift->start_time)->format('H:i') }} -
                             {{ \Carbon\Carbon::parse($appointment->shift->end_time)->format('H:i') }}
-                        </th>
+                        </td>
 
                         <td>{{ \Carbon\Carbon::parse($appointment->work_day)->format('d/m/Y') }}</td>
                         <td>{{ number_format($appointment->concept->price) }}đ</td>
@@ -66,7 +66,7 @@
                                     {{ $appointment->staff ? $appointment->staff->name : 'Chưa phân công' }}
                                 </span>
                                 @else
-                                <select name="staff_id" id="staff_id_{{ $appointment->id }}" required onchange="this.form.submit()">
+                                <select class="select-staff" name="staff_id" id="staff_id_{{ $appointment->id }}" required onchange="this.form.submit()">
                                     @if ($appointment->availableStaffs->count() == 1)
                                     <option value="" {{ !$appointment->staff_id ? 'selected' : '' }}>Chọn thợ chụp</option>
                                     <option value="{{ $appointment->availableStaffs->first()->id }}"
@@ -91,13 +91,13 @@
                         </td>
                         <td>{{ $appointment->note }}</td>
                         @if ($appointment->status === \App\Models\Appointment::STATUS_ASYNC)
-                            <td><a class="save-btn">🖨️</a></td>
+                            <td><a class="save-btn"><i class="fa-regular fa-calendar-check"></i></a></td>
                         @elseif ($appointment->status === \App\Models\Appointment::STATUS_WAIT)
                             <td><a href="{{ url('admin/manage-sche?shift_id='. $appointment->shift_id.'&date='. $appointment->work_day) }}" class="btn-add">
                                 <i class="fa-solid fa-plus" style="color: white;"></i>
                             </a></td>
                         @else
-                            <td><a href="{{ url('admin/appointments/async/' . $appointment->id) }}" class="btn-save">🖨️</a></td>
+                            <td><a href="{{ url('admin/appointments/async/' . $appointment->id) }}" class="btn-save"><i class="fa-regular fa-calendar-check"></i></a></td>
                         @endif
                     </tr>
                     @endforeach
@@ -188,6 +188,11 @@
         position: sticky;
         top: 0;
         z-index: 1;
+    }
+    .select-staff {
+        border-radius: 5px;
+        height: 30px;
+        border: 1px solid yellowgreen
     }
 </style>
 @endsection

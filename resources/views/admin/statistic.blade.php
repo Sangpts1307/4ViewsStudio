@@ -33,7 +33,7 @@
             <div class="metric">
                 <div class="row">
                     <div class="col-md-3 content-header-icon">
-                        <i class="nav-icon fa-solid fa-hospital-user"></i>
+                        <i class="fa-regular fa-calendar-check"></i>
                     </div>
                     <div class="col-md-9 text-center">
                         <h5 class="pad-10">Số lịch hẹn chưa hoàn thành</h5>
@@ -46,7 +46,7 @@
             <div class="metric">
                 <div class="row">
                     <div class="col-md-3 content-header-icon">
-                        <i class="nav-icon fa-solid fa-hospital-user"></i>
+                        <i class="fa-regular fa-image"></i>
                     </div>
                     <div class="col-md-9 text-center">
                         <h5 class="pad-10">Tổng số gói chụp </h5>
@@ -96,7 +96,7 @@
     .metric {
         border: 1px solid black;
         padding: 25px;
-        background: linear-gradient(to right, #5bcdd1, #8fdde0);
+        background: linear-gradient(to bottom,rgb(227, 236, 215), #9ad4b1);
         border-radius: 15px;
         height: 100%;
     }
@@ -134,12 +134,12 @@
         border-right: 1px solid black;
     }
     .barChart {
-        border: 1px solid #3cabb1;
+        border: 1px solid rgb(113, 211, 126);
         height: 100%;
         width: 100%;
     }
     .pieChart {
-        border: 1px solid #3cabb1;
+        border: 1px solid rgb(113, 211, 126);
         height: 100%;
         width: 100%;
     }

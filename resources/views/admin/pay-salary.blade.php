@@ -1,7 +1,19 @@
 @extends('admin.index')
 
 @section('content')
-
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@elseif (session('update'))
+    <div class="alert alert-success">
+        {{ session('update') }}
+    </div>
+@elseif (session('error'))
+    <div class="alert alert-success">
+        {{ session('error') }}
+    </div>
+@endif
 <div class="d-flex justify-content-center align-items-center mt-3">
     <div class="w-95">
 <div id="header">
@@ -53,9 +65,9 @@
                             <form action="/admin/pay" method="get">
 
                                 <input type="hidden" name="user_id" id="" value="{{ $staff->user_id }}">
-                             <input type="hidden" name="month" value="{{ $month }}">
+                                <input type="hidden" name="month" value="{{ $month }}">
                                 @if ($staff->status == App\Models\Salary::PAID)
-                                    <button class="btn btn-success">đã thanh toán</button>
+                                    <div class="btn btn-success">Đã thanh toán</div>
                                 @else
                                 <button type="submit" class="btn btn-primary"><i class="fa-solid fa-dollar-sign"></i> Trả lương</button>
                                 @endif

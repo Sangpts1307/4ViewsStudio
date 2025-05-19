@@ -37,7 +37,7 @@ class StaffController extends Controller
         $staff->address = $params['address'];
         $staff->account_number = $params['account_number'];
         $staff->save();
-        return redirect('/admin/staff');
+        return redirect('/admin/staff')->with('update', 'Cập nhật thông tin nhân viên thành công.');
     }
 
     public function addStaff(Request $request)
@@ -53,7 +53,7 @@ class StaffController extends Controller
         $staff->password = User::getDefaultPassword();
         $staff->role = User::ROLE_STAFF;
         $staff->save();
-        return redirect('/admin/staff');
+        return redirect('/admin/staff')->with('success', 'Thêm thông tin nhân viên thành công.');
     }
     public function deleteStaff(Request $request, int $staffId)
     {
@@ -62,13 +62,13 @@ class StaffController extends Controller
         //dd($staffId);
         if ($staff) {
             $staff->delete();
-            return redirect('/admin/staff')->with('success', 'Staff deleted successfully.');
+            return redirect('/admin/staff')->with('success', 'Xóa nhân viên thành công');
         }
 
-        return redirect('/admin/staff')->with('error', 'Staff not found.');
+        return redirect('/admin/staff')->with('error', 'Không tìm thấy nhân viên');
     }
 
-    
+
 
     public function schedule(Request $request)
     {
@@ -156,24 +156,20 @@ class StaffController extends Controller
 
             $staffId = $request->input('staff_id');
             $month = $request->input('month');
-            //  dd("hehehehehehehehedhhahaha");
 
             Salary::where('user_id', $staffId)
                 ->where('month', $month)
                 ->update(['status' => Salary::PAID]); // Hoặc giá trị bạn muốn
-            return redirect('/admin/pay-salary?month=' . $month);
+            return redirect('/admin/pay-salary?month=' . $month)
+                ->with('success', 'Trả lương nhân viên thành công.');
             // Có thể trả về một response hoặc redirect sau khi cập nhật thành công
         }
         return view('admin.pay-salary', compact('staffs', 'month'));
     }
     public function pay(Request $request)
     {
-
-
         $userId = $request->input('user_id');
         $month = $request->input('month');
-
-
         // Retrieve the staff data based on the user_id and month
         $staff = DB::table('salaries')
             ->join('users', 'users.id', '=', 'salaries.user_id')

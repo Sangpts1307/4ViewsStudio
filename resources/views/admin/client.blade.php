@@ -19,7 +19,7 @@
             </form>
 
             <div class="table-responsive-custom">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>Tên khách hàng</th>
@@ -88,7 +88,7 @@
             border-collapse: collapse;
         }
 
-        .table-responsive-custom thead th {
+        /* .table-responsive-custom thead th {
             background-color: #f8f9fa;
             position: sticky;
             top: 0;
@@ -100,6 +100,6 @@
             padding: 0.75rem;
             border: 1px solid #dee2e6;
             text-align: left;
-        }
+        } */
     </style>
 @endsection
