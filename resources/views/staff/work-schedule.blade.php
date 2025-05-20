@@ -45,7 +45,7 @@
                             @php
                                 $hasShift = $schedules->where('shift_id', $shift->id)->isNotEmpty();
                             @endphp
-                            <td>{{ $hasShift ? 'X' : '' }}</td>
+                            <td>{{ $hasShift ? '✅' : '' }}</td>
                         @endforeach
                         <td>
                           

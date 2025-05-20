@@ -50,7 +50,7 @@
             </a>
 
             <!-- Instagram -->
-            <a href="https://www.instagram.com/apr.peidbh/" target="_blank" title="Instagram">
+            <a href="https://www.instagram.com/4views_studio?igsh=czNhdmludmwxdjd0&utm_source=qr" target="_blank" title="Instagram">
                 <i class="fa-brands fa-instagram fa-lg" style="color: #e4405f;"></i>
             </a>
 
