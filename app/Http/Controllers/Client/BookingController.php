@@ -33,8 +33,11 @@ class BookingController extends Controller
         $userId = session('user_id');
         $shiftId = $params['shift'];
         $conceptId = $params['concept'];
-
         $work_day = $params['date'];
+
+        if ($this->checkExist($work_day, $shiftId, $userId) > 0) {
+            return back()->with('error', 'Đã có lịch hẹn trong ca này!');
+        }
 
         $countBooking = Appointment::where('shift_id', $shiftId)
         ->whereDate('work_day', $work_day)->count();
@@ -48,4 +51,12 @@ class BookingController extends Controller
         return view('clients.bookingdetail', compact('message', 'work_day', 'concept', 'shift'));
     }
 
+    public function checkExist($workDay, $shiftId, $userId)
+    {
+        $count = Appointment::where('user_id', $userId)
+            ->where('work_day', $workDay)
+            ->where('shift_id', $shiftId)
+            ->count();
+        return $count;
+    }
 }

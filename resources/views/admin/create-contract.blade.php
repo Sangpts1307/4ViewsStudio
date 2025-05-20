@@ -42,29 +42,28 @@
 
                     <div class="col-md-6 mb-3">
                         <label for="gmail" class="form-label">Gmail</label>
-                        <input type="email" class="form-control" id="gmail" name="gmail">
+                        <input type="email" class="form-control" id="gmail" name="gmail" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="concept" class="form-label">Concept</label>
-                        <select name="concept" id="concept" class="form-control">
+                        <select name="concept" id="concept" class="form-control" required>
+                            <option value="" disabled selected>Chọn Concept</option> {{-- Option mặc định --}}
                             @foreach ($concepts as $concept)
                                 <option value="{{ $concept->id }}" data-price="{{ $concept->price }}">
                                     {{ $concept->name }}
                                 </option>
                             @endforeach
                         </select>
-                        
-                        
+
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label for="ngay_chup" class="form-label">Ngày chụp</label>
-                        <input type="date" class="form-control" id="ngay_chup" name="ngay_chup">
+                        <input type="date" class="form-control" id="ngay_chup" name="ngay_chup" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="ca_chup" class="form-label">Ca chụp</label>
-                        <select name="ca_chup" id="ca_chup" class="form-control">
-                           
+                        <select name="ca_chup" id="ca_chup" class="form-control" required>
                             @foreach ($shifts as $shift)
                                 <option value="{{ $shift->id }}" data-price="{{ $shift->price }}">
                                     {{ \Carbon\Carbon::parse($shift->start_time)->format('H:i') }} -

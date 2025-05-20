@@ -13,6 +13,19 @@
         </ul>
     </div>
 @endif
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @elseif (session('update'))
+        <div class="alert alert-success">
+            {{ session('update') }}
+        </div>
+    @elseif (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <form action="{{ url('/clients/bookingdetail') }}" method="get">
         @csrf
         <div class="col-md-12 height-60vh ">
@@ -69,14 +82,15 @@
 
 
                         <label for="concept">Concept</label>
-                        <select class="form-select" id="concept" name="concept" aria-label="Concept" required>
-                            <option disabled {{ $conceptId ? '' : 'selected' }}>Chọn Concept</option>
+                        <select class="form-select" id="concept" name="concept" required>
+                            <option value="" disabled {{ $conceptId ? '' : 'selected' }}>Chọn Concept</option>
                             @foreach ($concepts as $concept)
-                            <option value="{{ $concept->id }}" {{ $concept->id == $conceptId ? 'selected' : '' }}>
-                                {{ $concept->name }}
-                            </option>
+                                <option value="{{ $concept->id }}" {{ $concept->id == $conceptId ? 'selected' : '' }}>
+                                    {{ $concept->name }}
+                                </option>
                             @endforeach
                         </select>
+
 
                     </div>
                 </div>
@@ -87,8 +101,8 @@
                         <input type="email" name="email" id="email" class="form-control" placeholder="Email" value="{{ $user->email }}" aria-label="Email" required>
 
 
-                        <label for="message">Chi tiết lời nhắn</label>
-                        <textarea class="form-control" name="message" id="message" placeholder="Chi tiết lời nhắn" style="height: 45%;" aria-label="Chi tiết lời nhắn" required></textarea>
+                        <label for="message">Lời nhắn tới thợ</label>
+                        <textarea class="form-control" name="message" id="message" placeholder="Chi tiết lời nhắn" style="height: 45%;" aria-label="Chi tiết lời nhắn"></textarea>
                     </div>
                     <input type="submit" class="btn btn-primary" value="Đặt lịch hẹn" style="margin-top: 20px; margin-left: 75%;">
                 </div>

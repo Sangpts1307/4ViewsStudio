@@ -19,7 +19,7 @@ class ExpenseController extends Controller
     public function store(Request $request)
     {
         Expense::create($request->only(['name', 'price', 'expense_day']));
-        return redirect('/admin/expense');
+        return redirect('/admin/expense')->with('success', 'Thêm danh mục thu chi thành công!');
 
     }
 
@@ -32,14 +32,13 @@ class ExpenseController extends Controller
     {
         $expense = Expense::findOrFail($id);
         $expense->update($request->only(['name', 'price', 'expense_day']));
-        return redirect('/admin/expense');
-
+        return redirect('/admin/expense')->with('success', 'Cập nhật danh mục thu chi thành công!');
     }
 
     public function destroy($id)
     {
         Expense::destroy($id);
-        return redirect('/admin/expense');
+        return redirect('/admin/expense')->with('success', 'Xóa danh mục thu chi thành công!');
 
     }
 }

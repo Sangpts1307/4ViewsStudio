@@ -37,7 +37,7 @@
                             {{ \Carbon\Carbon::parse($app->shift->end_time)->format('H:i') }}
                         </td>
                         <td>{{ $app->concept->name }}</td>
-                        <td>{{ $app->staff->name }}</td>
+                        <td>{{ $app->staff->name ?? 'Chưa xác nhận' }}</td>
                         @if ($app->status == \App\Models\Appointment::STATUS_DONE)
                         <td><a href="{{ $app->link_image }}" target="_blank">Link ảnh</a></td>
                         @else

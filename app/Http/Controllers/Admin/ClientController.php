@@ -52,10 +52,9 @@ class ClientController extends Controller
             $appointments->where(function ($query) use ($params) {
                 $query->whereHas('concept', function ($queryBuilder) use ($params) {
                     $queryBuilder->where('name', 'like', '%' . $params['search'] . '%');
-                })
-                    ->orWhereHas('staff', function ($queryBuilder) use ($params) {
-                        $queryBuilder->where('name', 'like', '%' . $params['search'] . '%');
-                    });
+                })->orWhereHas('staff', function ($queryBuilder) use ($params) {
+                    $queryBuilder->where('name', 'like', '%' . $params['search'] . '%');
+                });
             });
         }
 

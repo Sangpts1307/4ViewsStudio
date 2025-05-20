@@ -62,10 +62,10 @@
 
     .box-concept-detail {
         position: relative;
-
-
         text-align: center;
         margin: 10px;
+        height: 250px;
+        overflow: hidden; /* nếu nội dung vượt quá thì ẩn */
     }
 
 
@@ -73,6 +73,9 @@
         display: block;
         width: 100%;
         height: auto;
+        object-fit: contain;
+        max-width: 100%;
+        max-height: 100%;
     }
 
 

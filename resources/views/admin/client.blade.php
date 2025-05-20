@@ -39,7 +39,7 @@
                                 <td>{{ $client->address }}</td>
                                 <td>{{ \Carbon\Carbon::parse($client->birth_date)->format('d-m-Y') }}</td>
                                 <td>
-                                    <a href="{{ url('/admin/clients/show/' . $client->id) }}" class="btn btn-primary">Xem chi tiết</a>
+                                    <a href="{{ url('/admin/clients/show/' . $client->id) }}" class="btn btn-primary">Xem hồ sơ</a>
                                 </td>
                             </tr>
                         @empty

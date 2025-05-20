@@ -29,7 +29,7 @@
                     <td>{{ $appointment->staff->name ?? 'N/A' }}</td>
                     <td>
                         @if ($appointment->link_image)
-                        <a href="{{ $appointment->link_image }}" target="_blank">drive...</a>
+                        <a href="{{ $appointment->link_image }}" target="_blank">Link ảnh</a>
                         @else
                         Không có
                         @endif

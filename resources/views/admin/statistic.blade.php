@@ -85,6 +85,9 @@
                         value="{{ $selectedMonth }}">
                 </form>
                 <canvas id="pieChartRevenue"></canvas>
+                <div id="noDataMessage" class="text-center text-muted mt-3" style="display: none;">
+                    <em>Chưa có dữ liệu tháng này</em>
+                </div>
                 <h5 class="text-center" style="margin-top: 23px;">Biểu đồ tỉ lệ sử dụng concept</h5>
             </div>
         </div>
@@ -152,7 +155,6 @@
      * Script for bar chart view
      */
     
-
     const revenueData = {!! json_encode($revenueData) !!};
 
     // Tạo một danh sách doanh thu với đủ 12 tháng
@@ -191,6 +193,20 @@
 
     // Khởi tạo dữ liệu biểu đồ
     function updatePieChart(conceptUsageData) {
+        const ctxPieChart = document.getElementById('pieChartRevenue').getContext('2d');
+        const noDataMessage = document.getElementById('noDataMessage');
+
+        if (!conceptUsageData || conceptUsageData.length === 0) {
+            // Ẩn biểu đồ, hiện thông báo
+            document.getElementById('pieChartRevenue').style.display = 'none';
+            noDataMessage.style.display = 'block';
+            return;
+        }
+
+        // Có dữ liệu: hiển thị biểu đồ, ẩn thông báo
+        document.getElementById('pieChartRevenue').style.display = 'block';
+        noDataMessage.style.display = 'none';
+
         const pieChartData = {
             labels: conceptUsageData.map(item => item.name),
             datasets: [{
@@ -200,13 +216,13 @@
             }]
         };
 
-        const ctxPieChart = document.getElementById('pieChartRevenue').getContext('2d');
         new Chart(ctxPieChart, {
             type: 'pie',
             data: pieChartData,
             options: { responsive: true }
         });
     }
+
 
     // Cập nhật biểu đồ với dữ liệu hiện tại khi trang tải
     updatePieChart(conceptUsageData);

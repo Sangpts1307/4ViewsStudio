@@ -12,6 +12,7 @@ use App\Models\Shift;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
@@ -24,6 +25,7 @@ class AppointmentController extends Controller
             $shiftId = $request->input('shift_id');
             $work_day = $request->input('work_day');
             $conceptId = $request->input('concept_id');
+        
 
             $appointment = new Appointment();
             $appointment->shift_id = $shiftId;

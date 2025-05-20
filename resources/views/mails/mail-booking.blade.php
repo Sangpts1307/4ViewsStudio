@@ -13,8 +13,8 @@
             <p><span class="label">📅 Ngày chụp:</span> {{ $workDay }}</p>
             <p><span class="label">🕒 Ca chụp:</span> {{ $shift }}</p>
             <p><span class="label">🎨 Gói chụp:</span> {{ $concept }}</p>
-            <p><span class="label">💵 Giá gói chụp:</span> {{ $price }}</p>
-            <p><span class="label">💸 Số tiền đã cọc:</span> {{ $deposit }}</p>
+            <p><span class="label">💵 Giá gói chụp:</span> {{ number_format($price, 0, ',', '.') }}VNĐ</p>
+            <p><span class="label">💸 Số tiền đã cọc:</span> {{ number_format($deposit, 0, ',', '.') }}VNĐ</p>
         </div>
 
         <div class="footer">

@@ -1,6 +1,27 @@
 @extends('admin.index')
 
 @section('content')
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+
+    @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <div class="d-flex justify-content-center align-items-center mt-3">
         <div class="w-95">
             <div id="header">
@@ -36,7 +57,7 @@
                         <div class="col-md-6 mb-2">
                             <label for=""></label>
                             <div class="col-md-12 d-flex">
-                                <button type="submit" class="btn btn-success me-2" id="btnSave" style="width: 20%;">
+                                <button type="submit" class="btn btn-success me-2" id="btnSave" >
                                     <i class="fa-solid fa-plus"></i> Thêm mới
                                 </button>
 

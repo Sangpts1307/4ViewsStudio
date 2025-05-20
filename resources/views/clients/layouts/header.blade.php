@@ -55,9 +55,10 @@
             </a>
 
             <!-- Gmail (Google) -->
-            <a href="gmailto:nguyenduykhanh121204@gmail.com" title="Gmail">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nguyenduykhanh121204@gmail.com" target="_blank" title="Gửi Gmail">
                 <i class="fa-brands fa-google fa-lg" style="color: #db4437;"></i>
             </a>
+
 
             <!-- Zalo (ảnh) -->
             <a href="https://zalo.me/0862009271" target="_blank" title="Zalo">
