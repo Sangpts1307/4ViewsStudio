@@ -1,28 +1,28 @@
 <div class="avatar">
     <img height="100px" width="100px" src="/image/avt.png" alt="Avatar">
-   
+
     <h5>4ViewStudio</h5>
 </div>
 <div class="user-header">
     <div class="avatar-hello">
-        <i class="fas fa-user-circle"></i>  <!-- Font Awesome icon -->
+        <i class="fas fa-user-circle"></i>
     </div>
     <div class="user-info">
         <h5>Xin chào!</h5>
-        <h6>Photographer</h6>
+        <h6>{{ $user_name }}</h6>
     </div>
 </div>
 <div class="menu">
     <ul class="nav flex-column">
-       
+
         <li class="nav-item"><a class="nav-link" href="{{ url('/staff/info') }}"><i class="nav-icon fa-solid fa-user"></i>Thông tin cá nhân</a></li>
 
-        <li class="nav-item"><a class="nav-link" href="{{ url('/staff/work-schedule') }}"><i class="nav-icon fa-regular fa-calendar-days"></i>  Lịch làm việc</a></li>
-        
+        <li class="nav-item"><a class="nav-link" href="{{ url('/staff/work-schedule') }}"><i class="nav-icon fa-regular fa-calendar-days"></i> Lịch làm việc</a></li>
+
     </ul>
 </div>
-<br/>
-<a href="{{ url('/logout') }}" >
+<br />
+<a href="{{ url('/logout') }}">
     <button class="btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</button>
 </a>
 
@@ -112,12 +112,13 @@
     .menu ul li:hover {
         color: white;
     }
-.button-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: end;
-    padding-bottom: 20px;
-}
+
+    .button-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        padding-bottom: 20px;
+    }
 
     .btn-logout {
         bottom: 20px;
@@ -131,8 +132,6 @@
         font-size: 16px;
         background: linear-gradient(to right, #b3e5c7, #f7d794);
         background: linear-gradient(to right, #5fb9a5, #9ad4b1);
-
-
 
     }
 </style>
