@@ -51,7 +51,7 @@ Route::group(['middleware' => 'checkLogin'], function () {
         Route::get('/clients/show/{id}', [\App\Http\Controllers\Admin\ClientController::class, 'show']);
 
         Route::get('/appointment-sche', [\App\Http\Controllers\Admin\AppointmentController::class, 'index']);
-      Route::post('/appointment-sche', [\App\Http\Controllers\Admin\AppointmentController::class, 'assignStaff']);
+        Route::post('/appointment-sche', [\App\Http\Controllers\Admin\AppointmentController::class, 'assignStaff']);
         Route::get('/appointments/search', [\App\Http\Controllers\Admin\AppointmentController::class, 'search']);
         Route::get('/appointments/async/{id}', [\App\Http\Controllers\Admin\AppointmentController::class, 'async']);
 
@@ -60,8 +60,8 @@ Route::group(['middleware' => 'checkLogin'], function () {
         Route::get('/contracts/create', [\App\Http\Controllers\Admin\ContractController::class, 'create']);
         Route::post('/contracts/store', [\App\Http\Controllers\Admin\ContractController::class, 'store']);
         Route::get('/contract', [\App\Http\Controllers\Admin\ContractController::class, 'index']);
-         Route::get('/contract/print/{contractId}', [\App\Http\Controllers\Admin\PrintContractController::class, 'index']);
-           Route::get('/contract/upload-drive', [\App\Http\Controllers\Admin\UploadContractController::class, 'index']);
+        Route::get('/contract/print/{contractId}', [\App\Http\Controllers\Admin\PrintContractController::class, 'index']);
+        Route::get('/contract/upload-drive', [\App\Http\Controllers\Admin\UploadContractController::class, 'index']);
         Route::get('/expense', [\App\Http\Controllers\Admin\ExpenseController::class, 'index']);
         Route::post('/expense/store', [\App\Http\Controllers\Admin\ExpenseController::class, 'store']);
         Route::get('/expense/edit/{id}', [\App\Http\Controllers\Admin\ExpenseController::class, 'edit']);
@@ -76,6 +76,7 @@ Route::group(['middleware' => 'checkLogin'], function () {
         Route::get('/info', [App\Http\Controllers\Staff\ProfileController::class, 'showForm']);
         Route::post('/info/update', [App\Http\Controllers\Staff\ProfileController::class, 'update']);
     });
+    
     Route::group(['prefix' => 'clients'], function () {
         Route::get('/header-layout', [App\Http\Controllers\Client\ConceptController::class, 'headerLayout']);
         Route::get('/home', [App\Http\Controllers\Client\ConceptController::class, 'home']);
@@ -86,8 +87,8 @@ Route::group(['middleware' => 'checkLogin'], function () {
         Route::get('/appointments', [App\Http\Controllers\Client\AppointmentController::class, 'index']);
         Route::get('/booking', [App\Http\Controllers\Client\BookingController::class, 'showBookingForm']);
         Route::get('/bookingdetail', [App\Http\Controllers\Client\BookingController::class, 'processBooking']);
-      //  Route::post('/bookingdetail', [App\Http\Controllers\Client\BookingController::class, 'showBookingDetailPage']);
-      Route::get('/contact', [\App\Http\Controllers\Client\ContactController::class, 'index']);
+        //  Route::post('/bookingdetail', [App\Http\Controllers\Client\BookingController::class, 'showBookingDetailPage']);
+        Route::get('/contact', [\App\Http\Controllers\Client\ContactController::class, 'index']);
     });
 });
 

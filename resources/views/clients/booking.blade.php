@@ -104,64 +104,65 @@
     let currentMonth = currentDate.getMonth();
     let currentYear = currentDate.getFullYear();
 
-
     const months = [
         "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6",
         "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"
     ];
-
 
     function renderCalendar() {
         const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
         const firstDay = firstDayOfMonth.getDay();
         const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-
         document.getElementById("month-year").textContent = `${months[currentMonth]} ${currentYear}`;
-
 
         const calendarGrid = document.getElementById("calendar-grid");
         while (calendarGrid.children.length > 7) {
             calendarGrid.removeChild(calendarGrid.lastChild);
         }
 
-
+        // Thêm ô trống trước ngày đầu tiên
         for (let i = 0; i < firstDay; i++) {
             const emptyDiv = document.createElement("div");
             emptyDiv.className = "empty";
             calendarGrid.appendChild(emptyDiv);
         }
 
+        // Lấy ngày hiện tại (chỉ phần ngày/tháng/năm, bỏ giờ phút)
+        const today = new Date();
+        const currentDateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
         for (let day = 1; day <= daysInMonth; day++) {
             const dayDiv = document.createElement("div");
             dayDiv.className = "day";
             dayDiv.textContent = day;
 
+            const date = new Date(currentYear, currentMonth, day);
 
-            dayDiv.addEventListener("click", function() {
-                const selectedDay = document.querySelector(".calendar-grid .selected");
-                if (selectedDay) {
-                    selectedDay.classList.remove("selected");
-                }
+            if (date <= currentDateOnly) {
+                // Nếu là ngày trong quá khứ thì vô hiệu hóa
+                dayDiv.classList.add("disabled");
+            } else {
+                // Cho phép chọn ngày
+                dayDiv.addEventListener("click", function () {
+                    const selectedDay = document.querySelector(".calendar-grid .selected");
+                    if (selectedDay) {
+                        selectedDay.classList.remove("selected");
+                    }
 
+                    dayDiv.classList.add("selected");
 
-                dayDiv.classList.add("selected");
+                    const dayStr = String(day).padStart(2, '0');
+                    const monthStr = String(currentMonth + 1).padStart(2, '0');
+                    const dateValue = `${currentYear}-${monthStr}-${dayStr}`;
 
-
-                const dayStr = String(day).padStart(2, '0');
-                const monthStr = String(currentMonth + 1).padStart(2, '0');
-                const dateValue = `${currentYear}-${monthStr}-${dayStr}`;
-
-
-                document.getElementById("selected-date").value = dateValue;
-            });
-
+                    document.getElementById("selected-date").value = dateValue;
+                });
+            }
 
             calendarGrid.appendChild(dayDiv);
         }
     }
-
 
     function prevMonth() {
         currentMonth--;
@@ -172,7 +173,6 @@
         renderCalendar();
     }
 
-
     function nextMonth() {
         currentMonth++;
         if (currentMonth > 11) {
@@ -181,7 +181,9 @@
         }
         renderCalendar();
     }
+
     renderCalendar();
+
 
 
     document.querySelectorAll('input[name="shift"]').forEach(radio => {
@@ -197,7 +199,8 @@
 
 <style>
     .khung {
-        background: linear-gradient(to bottom, #fff8e1, white);
+        background: linear-gradient(to bottom, #fff8e1);
+        /* background: linear-gradient(to bottom, #fff8e1, #e4f0ea); */
     }
     .calendar {
         background-color: white;
@@ -323,6 +326,13 @@
     .calendar-grid .day.selected {
         background-color: #007bff;
         color: white;
+    }
+
+    .day.disabled {
+        color: #aaa;
+        background-color: #f5f5f5;
+        pointer-events: none;
+        cursor: default;
     }
 
 

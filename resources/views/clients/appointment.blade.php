@@ -22,7 +22,9 @@
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>{{ \Carbon\Carbon::parse($appointment->work_day)->format('d-m-Y') }}</td>
-                         <th>{{ \Carbon\Carbon::parse($appointment->shift->start_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($appointment->shift->end_time)->format('H:i') }}</th>
+                    <td>{{ \Carbon\Carbon::parse($appointment->shift->start_time)->format('H:i') }} 
+                        - {{ \Carbon\Carbon::parse($appointment->shift->end_time)->format('H:i') }}
+                    </td>
                     <td>{{ $appointment->concept->name ?? 'N/A' }}</td>
                     <td>{{ $appointment->staff->name ?? 'N/A' }}</td>
                     <td>

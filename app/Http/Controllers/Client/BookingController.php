@@ -23,8 +23,6 @@ class BookingController extends Controller
         if ($request->filled('concept_id')) {
             $conceptId = $request->input('concept_id');
         }
-
-      
         return view('clients.booking', compact('shifts', 'concepts', 'conceptId', 'user'));
     }
 
@@ -35,8 +33,6 @@ class BookingController extends Controller
         $userId = session('user_id');
         $shiftId = $params['shift'];
         $conceptId = $params['concept'];
-
-
 
         $work_day = $params['date'];
 
@@ -51,17 +47,5 @@ class BookingController extends Controller
 
         return view('clients.bookingdetail', compact('message', 'work_day', 'concept', 'shift'));
     }
-
-    // public function showBookingDetailPage(Request $request)
-    // {
-    //     $conceptId = $request->input('concept');
-
-    //     $appointment = Appointment::findOrFail($conceptId);
-    //     $shift = $appointment->shift;
-    //     $concept = $appointment->concept;
-    //     $deposit = $concept->price * 0.3;
-
-    //     return view('clients.bookingdetail', compact('appointment', 'shift', 'concept', 'deposit'));
-    // }
 
 }

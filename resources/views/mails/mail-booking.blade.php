@@ -2,20 +2,19 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>4Views Studio - Gửi ảnh</title>
+    <title>4Views Studio - Gửi thông tin lịch hẹn</title>
 </head>
 <body>
     <div class="email-wrapper">
         <div class="header">「4Views Studio」</div>
-        <div class="intro">「4Views Studio」gửi tới bạn ảnh chụp!</div>
+        <div class="intro">Bạn đã đặt lịch chụp hình thành công!</div>
 
         <div class="section">
-            <p><span class="label">👤 Người chụp:</span> {{ $staff }}</p>
-            <p><span class="label">🎨 Concept:</span> {{ $concept }}</p>
             <p><span class="label">📅 Ngày chụp:</span> {{ $workDay }}</p>
             <p><span class="label">🕒 Ca chụp:</span> {{ $shift }}</p>
-            <p class="image-link"><span class="label">📷 Link ảnh:</span> <a href="{{ $linkImage }}" target="_blank">Xem ảnh tại đây</a></p>
-            <p><span class="label">📃 Lời nhắn của thợ:</span> {{ $reply }}</p>
+            <p><span class="label">🎨 Gói chụp:</span> {{ $concept }}</p>
+            <p><span class="label">💵 Giá gói chụp:</span> {{ $price }}</p>
+            <p><span class="label">💸 Số tiền đã cọc:</span> {{ $deposit }}</p>
         </div>
 
         <div class="footer">
