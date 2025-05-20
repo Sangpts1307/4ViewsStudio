@@ -44,7 +44,7 @@ class ClientController extends Controller
         $params = $request->all();
         $client = User::findOrFail($id);
 
-        $appointments = Appointment::with(['staff', 'concept'])
+        $appointments = Appointment::with(['staff', 'concept', 'shift'])
             ->where('user_id', $id)
             ->orderByDesc('work_day');
 
