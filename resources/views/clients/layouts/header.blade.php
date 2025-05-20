@@ -45,7 +45,7 @@
     <div class="w-100 d-flex justify-content-between align-items-center">
         <div class="icon-group d-flex gap-3 align-items-center">
             <!-- Facebook -->
-            <a href="https://www.facebook.com/nguyen.quang.759856" target="_blank" title="Facebook">
+            <a href="https://web.facebook.com/profile.php?id=61576618827764" target="_blank" title="Facebook">
                 <i class="fa-brands fa-facebook fa-lg" style="color: #1877f2;"></i>
             </a>
 
@@ -55,7 +55,7 @@
             </a>
 
             <!-- Gmail (Google) -->
-            <a href="mailto:nguyenduykhanh121204@gmail.com" title="Gmail">
+            <a href="gmailto:nguyenduykhanh121204@gmail.com" title="Gmail">
                 <i class="fa-brands fa-google fa-lg" style="color: #db4437;"></i>
             </a>
 
