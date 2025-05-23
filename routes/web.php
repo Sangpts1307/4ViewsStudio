@@ -17,6 +17,8 @@ Route::get('/login', [App\Http\Controllers\Auth\AuthController::class, 'login'])
 Route::post('/login', [App\Http\Controllers\Auth\AuthController::class, 'doLogin']);
 Route::get('/auth', [App\Http\Controllers\Auth\AuthController::class, 'getRegister']);
 Route::post('/auth', [App\Http\Controllers\Auth\AuthController::class, 'postRegister']);
+Route::get('/forgot', [App\Http\Controllers\Auth\AuthController::class, 'forgotPassword']);
+Route::post('/forgot', [App\Http\Controllers\Auth\AuthController::class, 'postForgotPassword']);
 Route::get('/logout', [App\Http\Controllers\Auth\AuthController::class, 'logout']);
 
 
