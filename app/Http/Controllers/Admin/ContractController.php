@@ -15,18 +15,19 @@ use function Psy\sh;
 
 class ContractController extends Controller
 {
+
+    // hiển thị danh sách hợp đồng và tao
     public function create(Request $request)
     {
         $appointments = Appointment::all(); // để chọn cuộc hẹn cần tạo HĐ
         $concepts = Concept::all();
         $shifts = Shift::all();
-    
         $price = $concepts->first()->price ?? 0;
-    
         return view('admin.create-contract', compact('appointments', 'concepts', 'shifts', 'price'));
     }
-    
 
+
+    // Lưu hợp đồng
     public function store(Request $request)
     {
         $params = $request->all();
@@ -37,7 +38,7 @@ class ContractController extends Controller
         $user->phone = $params['so_dien_thoai'];
         $user->password = User::getDefaultPassword();
         $user->save();
-        
+
         $appointment = new Appointment();
         $appointment->user_id = $user->id;
         $appointment->concept_id = $params['concept'];
@@ -48,43 +49,37 @@ class ContractController extends Controller
         $contract = new Contract();
         $contract->appointment_id = $appointment->id;
         $contract->save();
-    
-
-    return redirect('/admin/contract')->with('success', 'Tạo hợp đồng thành công!');
+        return redirect('/admin/contract')->with('success', 'Tạo hợp đồng thành công!');
     }
 
 
-//Tìm kiếm thông tin
+    //Tìm kiếm thông tin
     public function index(Request $request)
     {
-
         $contracts = DB::table('appointments')
-        ->join('users', 'appointments.user_id', '=', 'users.id')
-        ->join('concepts', 'appointments.concept_id', '=', 'concepts.id')
-        ->join('contracts', 'contracts.appointment_id', '=', 'appointments.id')
-        ->select(
-            'users.name as user_name',
-            'users.phone',
-            'appointments.work_day',
-            'concepts.price',
-            'contracts.role',
-            'contracts.id'
-        );
+            ->join('users', 'appointments.user_id', '=', 'users.id')
+            ->join('concepts', 'appointments.concept_id', '=', 'concepts.id')
+            ->join('contracts', 'contracts.appointment_id', '=', 'appointments.id')
+            ->select(
+                'users.name as user_name',
+                'users.phone',
+                'appointments.work_day',
+                'concepts.price',
+                'contracts.role',
+                'contracts.id'
+            );
+
+            
         if ($request->filled('customer_name')) {
             $contracts->where('users.name', 'like', '%' . $request->customer_name . '%');
         }
-        
         if ($request->filled('phone')) {
             $contracts->where('users.phone', 'like', '%' . $request->phone . '%');
         }
-        
         if ($request->filled('contract_date')) {
             $contracts->whereDate('appointments.work_day', $request->contract_date);
         }
         $contracts = $contracts->get();
-
-
-
         return view('admin.contract', compact('contracts'));
     }
 

@@ -40,7 +40,10 @@
                             Chờ xác nhận
                             @break
 
-                            @case(\App\Models\Appointment::STATUS_CONFIRMED)
+                            @case(\App\Models\Appointment::STATUS_CONFIRMED||\App\Models\Appointment::STATUS_ASYNC)
+                            {{-- Đang chờ --}}
+                            {{-- Hoặc đang thực hiện --}}
+                            {{-- Hoặc đã hoàn thành --}}
                             Đã xác nhận
                             @break
 

@@ -7,10 +7,10 @@
     <div class="avatar-hello">
         <i class="fas fa-user-circle"></i> <!-- Font Awesome icon -->
     </div>
-    <div class="user-info">
+    <a class="user-info" href="{{ url('/change_password') }}">
         <h5>Xin chào!</h5>
         <h6>Admin</h6>
-    </div>
+    </a>
 </div>
 <div class="menu">
     <ul class="nav flex-column">

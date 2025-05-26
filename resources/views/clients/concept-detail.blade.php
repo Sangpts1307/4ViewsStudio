@@ -11,12 +11,12 @@
                         <h4>BÁO GIÁ CHỤP HÌNH <strong>{{ mb_strtoupper($concept->name, 'UTF-8') }}</strong> TẠI 4VIEWS STUDIO</h4>
                         <p>{{ $concept->short_content }}</p>
                     </div>
-                    <div class="image-concept-detail text-center">
+                    <div class="image-concept-detail text-center d-flex justify-content-center align-items-center">
                         @php
                         $mainImage = glob(public_path("image/concepts/concept_{$concept->id}/main_images/main_image.*"));
                         @endphp
                         @if (!empty($mainImage))
-                        <img src="{{ asset(str_replace(public_path(), '', $mainImage[0])) }}" alt="Ảnh chính" title="Ảnh chụp {{ $concept->name }} độc lạ tại 4Views Studio">
+                        <img src="{{ asset(str_replace(public_path(), '', $mainImage[0])) }}" alt="Ảnh chính" title="Ảnh chụp {{ $concept->name }} độc lạ tại 4Views Studio" style="height:70vh; border-radius: 5px;">
                         @else
                         <img src="{{ asset('image/avt.png') }}" alt="Ảnh mặc định" class="image-concept">
                         @endif
@@ -91,8 +91,10 @@
         background: linear-gradient(to bottom, #fff8e1, white);
     }
     .image-concept-detail {
-        margin: 30px;
-    }
+      
+        margin-top: 30px;
+        margin-bottom: 30px;
+    } 
 
     .margin-top-20 {
         margin-top: 20px;

@@ -42,9 +42,7 @@ class SalaryExport implements FromCollection, WithHeadings, WithStyles
                 $salary->total_shift,
                 $finished_shift_tmp,
                 $salary->total_salary,
-
                 Salary::CONVERT_PAID_STATUS[$salary->status]
-
             ];
         }
         return collect($exportData);

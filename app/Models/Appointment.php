@@ -15,8 +15,8 @@ class Appointment extends Model
     const STATUS_ASYNC = 3;
     // Thứ tự: 0--2--3--1
 
+   
     protected $table = 'appointments';
-
     protected $fillable = [
         'user_id', 'staff_id', 'concept_id', 'shift',
         'work_day', 'note', 'reply', 'link_image',

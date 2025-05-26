@@ -16,41 +16,18 @@ class MailResgister extends Mailable
     public $email;
     public $name;
     public $verifyCode;
-   
-public function setEmail($email) {
+    public function setEmail($email)
+    {
         $this->email = $email;
     }
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
     }
-    public function setVerifyCode($verifyCode) {
+    public function setVerifyCode($verifyCode)
+    {
         $this->verifyCode = $verifyCode;
     }
-
-    // public function setStaff($staff) {
-    //     $this->staff = $staff;
-    // }
-
-    // public function setConcept($concept) {
-    //     $this->concept = $concept;
-    // }
-
-    // public function setWorkDay($workDay) {
-    //     $this->workDay = $workDay;
-    // }
-    
-    // public function setShift($shift) {
-    //     $this->shift = $shift;
-    // }
-
-    // public function setLinkImage($linkImage) {
-    //     $this->linkImage = $linkImage;
-    // }
-
-    // public function setMessage($reply) {
-    //     $this->reply = $reply;
-    // }
-
     /**
      * Create a new message instance.
      */
@@ -58,7 +35,6 @@ public function setEmail($email) {
     {
         //
     }
-
     /**
      * Get the message envelope.
      */
@@ -68,7 +44,6 @@ public function setEmail($email) {
             subject: '4Views Studio',
         );
     }
-
     /**
      * Get the message content definition.
      */
@@ -83,7 +58,6 @@ public function setEmail($email) {
             ]
         );
     }
-
     /**
      * Get the attachments for the message.
      *

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Mail;
 class WorkScheduleController extends Controller
 {
 
+    // Hiển thị lịch làm việc của nhân viên
     public function schedule(Request $request)
     {
         $userId = session('user_id');
@@ -37,73 +38,67 @@ class WorkScheduleController extends Controller
             ->get();
         $shifts = Shift::orderBy('start_time', 'asc')->get();
 
-
         return view('staff.work-schedule', compact('staffShedule', 'shifts', 'month'));
     }
+
+    // Hiển thị chi tiết lịch làm việc của nhân viên
     public function scheduleDetail(Request $request)
     {
         $date = null;
         $userId = session('user_id');
-
         if ($request->filled('date')) {
-
             // Lấy đúng định dạng ngày từ URL và chuyển sang định dạng chuẩn (Y-m-d)
             $date = $request->input('date');
 
             if (!Carbon::hasFormat($date, 'Y-m-d') && Carbon::hasFormat($date, 'd/m/y')) {
                 $date = Carbon::createFromFormat('d/m/y', $date)->format('Y-m-d');
             }
-            
         } else {
             $date = Carbon::now()->format('Y-m-d');
-            //dd($date);
         }
-        
-        
-       // dd($shifts);
+
         $schedules = Appointment::with(['staff', 'concept', 'shift', 'user'])
             ->whereDate('work_day', $date)
             ->whereHas('staff', function ($query) use ($userId) {
                 $query->where('id', $userId);
             })
             ->get();
-            $bookedShiftIds = $schedules->pluck('shift_id')->toArray();
+        $bookedShiftIds = $schedules->pluck('shift_id')->toArray();
 
-            $shifts = DB::table('work_schedules')
+        $shifts = DB::table('work_schedules')
             ->join('shifts', 'work_schedules.shift_id', '=', 'shifts.id')
             ->join('users', 'work_schedules.user_id', '=', 'users.id')
             ->whereDate('work_schedules.work_day', $date)
             ->where('users.id', $userId)
             ->whereNotIn('shifts.id', $bookedShiftIds)
-            ->select('shifts.*') // lấy thêm gì tùy bạn
+            ->select('shifts.*')
             ->get();
-            $information = null;
-            if($request->filled('appointment_id')){
-                
-                $appointmentId = $request->input('appointment_id');
-                $information = Appointment::with(['concept', 'shift', 'user'])->find($appointmentId)  
-                ;
-            }
-        
-  
+        $information = null;
+        if ($request->filled('appointment_id')) {
+            $appointmentId = $request->input('appointment_id');
+            $information = Appointment::with(['concept', 'shift', 'user'])->find($appointmentId);
+        }
         return view('staff.schedule-detail', compact('date', 'schedules', 'shifts', 'information'));
     }
 
-    public function addLinkImage(Request $request){
+
+    // Thêm ảnh vào cuộc hẹn
+    public function addLinkImage(Request $request)
+    {
         $appointmentId = $request->input('appointment_id');
         $date = $request->input('date');
         $appointment = Appointment::find($appointmentId);
         $appointment->link_image = $request->input('link-image');
-        $appointment->reply = $request->input('message');
+        $appointment->reply = $request->input('message') ?? '';
         $appointment->status = Appointment::STATUS_DONE;
         $appointment->save();
-        
+
         $staff = User::find($appointment->staff_id);
         $concept = Concept::find($appointment->concept_id);
         $shift = Shift::find($appointment->shift_id);
         $user = User::find($appointment->user_id);
 
-        $contract = Contract::find($appointmentId);
+        $contract = Contract::where('appointment_id', $appointment->id)->first();
         $contract->role = Contract::STATUS_PAID;
         $contract->save();
 
@@ -120,13 +115,12 @@ class WorkScheduleController extends Controller
             $mailLinkImage->setShift($startTime . ' - ' . $endTime);
             $mailLinkImage->setLinkImage($appointment->link_image);
             $mailLinkImage->setMessage($appointment->reply);
-            // dd($staff->name, $concept->name, $startTime . ' - ' . $endTime, $appointment->link_image, $appointment->reply);
-            
+
             Mail::to($user->email)->send($mailLinkImage);
         } catch (\Exception $e) {
             dd($e);
         }
-        return redirect('/staff/schedule-detail?date='.$date)
+        return redirect('/staff/schedule-detail?date=' . $date)
             ->with('success', 'Đã gửi ảnh đến khách hàng!');
     }
 }

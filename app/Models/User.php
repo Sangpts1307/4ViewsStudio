@@ -23,11 +23,8 @@ class User extends Authenticatable
     const ROLE_ADMIN = 2;
     const ROLE_STAFF = 1;
     const ROLE_CLIENT = 0;
-    public static function getDefaultPassword()
-    {
-        return Hash::make("12345678");
-    }
-         protected $fillable = [
+    protected $table = 'users';
+    protected $fillable = [
         'name',
         'email',
         'password',
@@ -37,6 +34,12 @@ class User extends Authenticatable
         'birth_date',
         'account_number'
     ];
+
+
+     public static function getDefaultPassword()
+    {
+        return Hash::make("12345678");
+    }
 
     /**
      * The attributes that should be hidden for serialization.

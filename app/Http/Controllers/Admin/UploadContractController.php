@@ -36,7 +36,6 @@ class UploadContractController extends Controller
                 Log::error("Upload thất bại cho file: $fileName");
             }
         }
-
         return redirect()->back()->with('success', 'Đã upload tất cả file PDF lên Google Drive thành công!');
     }
 }

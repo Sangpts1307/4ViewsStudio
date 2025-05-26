@@ -23,27 +23,21 @@ class MailLinkImage extends Mailable
     public function setStaff($staff) {
         $this->staff = $staff;
     }
-
     public function setConcept($concept) {
         $this->concept = $concept;
     }
-
     public function setWorkDay($workDay) {
         $this->workDay = $workDay;
     }
-    
     public function setShift($shift) {
         $this->shift = $shift;
     }
-
     public function setLinkImage($linkImage) {
         $this->linkImage = $linkImage;
     }
-
     public function setMessage($reply) {
         $this->reply = $reply;
     }
-
     /**
      * Create a new message instance.
      */

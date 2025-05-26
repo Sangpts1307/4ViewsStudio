@@ -13,6 +13,7 @@ use App\Models\Concept;
 
 class BookingController extends Controller
 {
+    // Hiển thị form đặt lịch hẹn
     public function showBookingForm(Request $request)
     {
         $shifts = Shift::all();
@@ -25,7 +26,7 @@ class BookingController extends Controller
         }
         return view('clients.booking', compact('shifts', 'concepts', 'conceptId', 'user'));
     }
-
+    // Xử lý đặt lịch hẹn
     public function processBooking(Request $request)
     {
         $params = $request->all();
@@ -50,7 +51,7 @@ class BookingController extends Controller
 
         return view('clients.bookingdetail', compact('message', 'work_day', 'concept', 'shift'));
     }
-
+    // kiem tra xem đã có lịch hẹn trong ngày và ca làm việc chưa
     public function checkExist($workDay, $shiftId, $userId)
     {
         $count = Appointment::where('user_id', $userId)

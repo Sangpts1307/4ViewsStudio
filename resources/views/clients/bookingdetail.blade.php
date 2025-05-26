@@ -56,7 +56,7 @@
             {{ \Carbon\Carbon::parse($shift->end_time)->format('H:i') }} 
         </p>
         <p><strong>Concept:</strong> {{ $concept->name }}</p>
-        <p><strong>Tiền cọc:</strong> {{ number_format($concept->price * 0.3, 0, '.', '') }} VND</p>
+        <p><strong>Tiền cọc (30%):</strong> {{ number_format($concept->price * 0.3, 0, '.', '') }} VND</p>
 
         <!-- Các input ẩn để lấy dữ liệu -->
         <input type="hidden" id="_total_price" value="{{ $concept->price * 0.3 }}">

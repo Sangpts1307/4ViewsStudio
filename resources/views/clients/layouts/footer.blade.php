@@ -4,9 +4,11 @@
         color: white;
     }
 
+
     ul li a:hover {
         color: #a8e6cf;
     }
+
 
     .footer-menu {
         margin-top: 10;
@@ -22,6 +24,8 @@
 </style>
 
 
+
+
 <div id="footerr" class="col-md-12">
     <div class="container">
         <div class="row">
@@ -33,6 +37,7 @@
                 Có nhiều cơ sở, dễ dàng di chuyển, lựa chọn. <br>
                 Hãy đến 4Views Studio để cảm nhận sự khác biệt!
                 </p>
+
 
             </div>
             <div class="col-md-2 text-center">
@@ -52,13 +57,15 @@
                     <li>Email: hbdiep2004@gmail.com</li>
                     <li><a href="{{ url('clients/home') }}">Website: 4Views Studio</a></li>
 
+
                 </ul>
             </div>
             <div class="col-md-3 text-center">
                 <h3>My Account</h3>
                 <ul class="footer-menu">
-                    <li><a href="/auth">Login</a></li>
-                    <li><a href="/auth">Register</a></li>
+                    <li><a href="{{ url('/login') }}">Login</a></li>
+                    <li><a href="{{ url('/register') }}">Register</a></li>
+
 
                 </ul>
             </div>
@@ -83,9 +90,10 @@
                 </div>
             </div>
 
+
         </div>
     </div>
-    
+   
     <div class="col-md-12">
         <hr>
         <div class="col-md-12 text-center">
@@ -94,4 +102,6 @@
         <hr>
     </div>
 
+
 </div>
+

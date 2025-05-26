@@ -92,6 +92,7 @@
     document.getElementById('month').addEventListener('change', function () {
         document.getElementById('month-form').submit();
     });
+    
 </script>
 
 <style>

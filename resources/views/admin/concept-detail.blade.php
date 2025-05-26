@@ -37,7 +37,7 @@
                             $mainImage = glob(public_path("image/concepts/concept_{$concept->id}/main_images/main_image.*"));
                         @endphp
                         @if (!empty($mainImage))
-                            <img src="{{ asset(str_replace(public_path(), '', $mainImage[0])) }}" alt="Ảnh chính">
+                            <img src="{{ asset(str_replace(public_path(), '', $mainImage[0])) }}" alt="Ảnh chính" >
                         @else
                             <p class="text-danger">Ảnh chính chưa có. Vui lòng thêm ảnh.</p>
                         @endif                       

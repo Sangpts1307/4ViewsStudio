@@ -39,7 +39,7 @@
                         <div class="col-md-6">
                             <label for="">Email</label>
                             <input type="email" name="email" class="form-control" placeholder="Email" aria-label="Email"
-                                value="{{  $user->email ?? ''}}">
+                                value="{{  $user->email ?? ''}}" readonly>
                             <label for="">Địa chỉ</label>
                             <input type="text" name="address" class="form-control" placeholder="Địa chỉ" aria-label="Địa chỉ"
                                 value="{{ $user->address ?? ''}}">
@@ -48,7 +48,19 @@
                                 value="{{ $user->account_number ?? ''}}">
 
                         </div>
-                        <button type="submit" class="btn btn-primary big-btn">Lưu thông tin</button>
+                        
+                        <div class="d-flex justify-content-between" style="margin-top: 25px">
+    <div>
+        <a href="{{ url('/change_password') }}" class="btn btn-primary" style="background-color: #007bff; border: none; padding: 10px 20px; border-radius: 5px;">
+            Đổi mật khẩu
+        </a>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary" style="background-color: #007bff; border: none; padding: 10px 20px; border-radius: 5px;">
+            Lưu thông tin
+        </button>
+    </div>
+</div>
                     </div>
                 </div>
             </div>

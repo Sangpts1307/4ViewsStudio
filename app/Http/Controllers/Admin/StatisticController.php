@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class StatisticController extends Controller
 {
-    public function getStatistic(Request $request) 
+    public function getStatistic(Request $request)
     {
         $selectedMonth = $request->input('month', Carbon::now()->format('Y-m'));
         $selectedYear = $request->input('year', Carbon::now()->year);
@@ -23,7 +23,7 @@ class StatisticController extends Controller
             'totalClient' => User::where('role', User::ROLE_CLIENT)->count(),
             'pendingAppointment' => Appointment::where('status', Appointment::STATUS_WAIT)->count(),
             'totalConcept' => Concept::count(),
-        ];  
+        ];
 
         $conceptUsageData = Appointment::where('status', Appointment::STATUS_DONE)
             ->whereMonth('work_day', Carbon::parse($selectedMonth)->month) // Chỉ lấy dữ liệu của tháng đã chọn

@@ -7,6 +7,8 @@
 @endif
 
 
+
+
 @if (session('error'))
 <div class="alert alert-danger" id="alert-error">
     {{ session('error') }}
@@ -16,13 +18,15 @@
     <div class="main">
         <!-- Kiểm tra trạng thái qua session -->
         <input type="checkbox" id="chk" aria-hidden="true"
-            @if(session('showLogin')) checked @endif>
+            @if(!session('showLogin')) checked @endif>
+
 
         <!-- Phần đăng ký -->
         <div class="signup">
-            <form action="{{ url('/auth') }}" method="post" id="form-register">
+            <form action="{{ url('/register') }}" method="post" id="form-register">
                 @csrf
-                <label for="chk" aria-hidden="true">Register</label>
+                <label for="chk" aria-hidden="true">Sign up</label>
+
 
                 <input type="text" name="name" placeholder="Full name" required
                     value="{{ old('name', session('temp_user_data.name') ?? '') }}">
@@ -31,6 +35,7 @@
                 <input type="password" name="password" placeholder="Password" value="{{ session('temp_user_data.password') }}" required>
                 <input type="password" name="re_password" placeholder="Re_Password" value="{{ session('temp_user_data.password') }}" required>
 
+
                 @if (session('singup'))
                 <input id="verification" type="text" name="verification_code" placeholder="Nhập mã xác nhận" maxlength="6" required>
                 <input type="hidden" name="action" value="verify">
@@ -38,9 +43,11 @@
                 <input type="hidden" name="action" value="register">
                 @endif
 
+
                 <button type="submit">Sign up</button>
             </form>
         </div>
+
 
         <!-- Phần đăng nhập -->
         <div class="login">
@@ -58,14 +65,17 @@
     </div>
 </div>
 
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const inputVerification = document.getElementById("verification");
         const chkBox = document.getElementById("chk");
 
+
         @if(session('show_verification'))
         if (inputVerification) inputVerification.style.display = "block";
         @endif
+
 
         // Ẩn trường mã xác nhận nếu chuyển sang form login
         chkBox.addEventListener("change", function() {
@@ -73,6 +83,7 @@
                 // đang ở login
                 if (inputVerification) inputVerification.style.display = "none";
                 // session('show_verification', false);
+
 
             } else {
                 // đang ở signup
@@ -83,15 +94,18 @@
         });
     });
 
+
     // Tự động ẩn alert sau 10 giây
     setTimeout(function() {
         var successAlert = document.getElementById('alert-success');
         if (successAlert) successAlert.style.display = 'none';
 
+
         var errorAlert = document.getElementById('alert-error');
         if (errorAlert) errorAlert.style.display = 'none';
     }, 10000);
 </script>
+
 
 <style>
     .auth-container {
@@ -105,10 +119,18 @@
         background: linear-gradient(to bottom, #f5e4e6, #a2d1cc, #f1f4c3);
     }
 
+
     .forgot-password {
-        margin-left: 29vh;
+        margin-top: 5%;
+        margin-left: 50%;
+
     }
-    
+    .forgot-password a {
+           color
+: #257eb1;
+
+    }
+   
     .auth-container .main {
         width: 420px;
         height: 630px;
@@ -119,9 +141,13 @@
     }
 
 
+
+
     .auth-container #chk {
         display: none;
     }
+
+
 
 
     .auth-container .signup {
@@ -129,6 +155,8 @@
         width: 100%;
         height: 100%;
     }
+
+
 
 
     .auth-container label {
@@ -141,6 +169,8 @@
         cursor: pointer;
         transition: .5s ease-in-out;
     }
+
+
 
 
     .auth-container input {
@@ -156,6 +186,8 @@
         border-radius: 6px;
         font-size: 1.1em;
     }
+
+
 
 
     .auth-container button {
@@ -178,10 +210,14 @@
     }
 
 
+
+
     .auth-container button:hover {
         /* background: #6d44b8; */
         background-color: #5fc1b3;
     }
+
+
 
 
     .auth-container .login {
@@ -193,6 +229,8 @@
     }
 
 
+
+
     .auth-container .login label {
         /* color: #573b8a; */
         color: #3aa89b;
@@ -200,14 +238,20 @@
     }
 
 
+
+
     .auth-container #chk:checked~.login {
         transform: translateY(-570px);
     }
 
 
+
+
     .auth-container #chk:checked~.login label {
         transform: scale(1);
     }
+
+
 
 
     .auth-container #chk:checked~.signup label {
@@ -216,4 +260,7 @@
 </style>
 
 
+
+
 @endsection
+

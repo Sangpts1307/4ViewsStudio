@@ -10,7 +10,6 @@ class Concept extends Model
     use HasFactory;
 
     protected $table = 'concepts';
-
     protected $fillable = [
         'name', 'price', 'short_content', 'content'
     ];

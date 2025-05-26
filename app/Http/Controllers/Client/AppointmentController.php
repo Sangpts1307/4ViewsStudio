@@ -19,13 +19,11 @@ class AppointmentController extends Controller
 {
     public function index(Request $request)
     {
-        // $userId = Auth::id();
         $userId = session('user_id');
         if ($request->has(['shift_id', 'work_day', 'concept_id'])) {
             $shiftId = $request->input('shift_id');
             $work_day = $request->input('work_day');
             $conceptId = $request->input('concept_id');
-        
 
             $appointment = new Appointment();
             $appointment->shift_id = $shiftId;
@@ -41,7 +39,6 @@ class AppointmentController extends Controller
             $contract = new Contract();
             $contract->appointment_id = $appointment->id;
             $contract->save();
-
             try {
                 $workDay = Carbon::create($work_day)->format('d-m-Y');
                 $startTime = Carbon::parse($shift->start_time)->format('H:i');
@@ -57,15 +54,14 @@ class AppointmentController extends Controller
                 Mail::to($user->email)->send($mailBooking);
                 return redirect('/clients/appointments');
             } catch (\Exception $e) {
-                dd($e);
+                // dd($e);
+                return redirect()->back()->with(['error' => 'Gửi email thất bại. Vui lòng thử lại sau.']);
             }
         }
-
         $appointments = Appointment::with(['staff', 'concept', 'shift'])
             ->where('user_id', $userId)
             ->orderBy('work_day', 'desc')
             ->get();
-
         return view('clients.appointment', compact('appointments'));
     }
 }

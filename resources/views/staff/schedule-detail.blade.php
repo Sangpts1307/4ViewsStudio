@@ -150,7 +150,7 @@
                                     <p>Link ảnh</p>
                                 </div>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" placeholder="Link ảnh" name="link-image" value="">
+                                    <input type="text" class="form-control" placeholder="Link ảnh" name="link-image" value="" required>
                                 </div>
                             </div>
                                 

@@ -12,6 +12,8 @@ use App\Models\User;
 
 class InfoclientController extends Controller
 {
+
+    // Hiển thị form cập nhật thông tin cá nhân
     public function showForm()
     {
         $userId = session('user_id');
@@ -19,6 +21,8 @@ class InfoclientController extends Controller
         return view('clients.infoclient', compact('user'));
     }
 
+
+    // Xử lý cập nhật thông tin cá nhân
     public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [

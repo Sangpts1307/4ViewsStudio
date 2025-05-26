@@ -11,6 +11,9 @@ class Salary extends Model
 
     protected $table = 'salaries';
     const PAID  = 1;
+    const SALARY_BY_SHIFT = 50000; 
+    const SALARY_ROSE = 0.05;
+
     const CONVERT_PAID_STATUS = [
         1 => 'Đã thanh toán',
         0 => 'Trả lương'
@@ -19,4 +22,6 @@ class Salary extends Model
         'user_id', 'base_salary', 'total_shift', 'finished_shift',
         'total_salary', 'month', 'status'
     ];
+
+    
 }

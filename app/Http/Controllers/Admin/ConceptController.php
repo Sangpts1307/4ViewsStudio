@@ -12,20 +12,21 @@ use Illuminate\Support\Facades\File;
 
 class ConceptController extends Controller
 {
+    // hiển thị danh sách concept
     public function conceptCategory()
     {
         $concepts = Concept::all();
         return view("admin.concept-category", compact("concepts"));
     }
-
+    // Hiển thị chi tiết concept
     public function conceptDetail(Request $request, $id = null)
     {
         $concept = $id ? Concept::find($id) : new Concept(); // Nếu có ID, lấy dữ liệu; nếu không, tạo mới rỗng
         $isNew = is_null($id); // Xác định trạng thái "Thêm mới"
-
         return view('admin.concept-detail', compact('concept', 'isNew'));
     }
 
+    // Thêm mới concept
     public function addConcept(Request $request)
     {
         $param = $request->all();
@@ -33,27 +34,23 @@ class ConceptController extends Controller
         if ($existingConcept) {
             return redirect()->back()->with('error', 'Tên concept đã tồn tại!');
         }
-
         $concept = new Concept();
         $concept->name = $param['name'];
         $concept->price = $param['price'];
         $concept->short_content =  $param['short_content'];
         $concept->content = $param['content'];
         $concept->save();
-
         // Tạo thư mục lưu trữ nếu chưa tồn tại
         $conceptFolder = public_path("image/concepts/concept_{$concept->id}");
         $mainImageFolder = "{$conceptFolder}/main_images";
         $supportImageFolder = "{$conceptFolder}/support_images";
-
+        // Tạo các thư mục nếu chưa tồn tại
         foreach ([$conceptFolder, $mainImageFolder, $supportImageFolder] as $folder) {
             if (!is_dir($folder)) {
                 mkdir($folder, 0777, true);
             }
         }
-
         $allowedExtensions = ['png', 'jpg', 'jpeg'];
-
         // **Lưu ảnh chính**
         if ($request->hasFile('main_image')) {
             $file = $request->file('main_image');
@@ -71,7 +68,6 @@ class ConceptController extends Controller
                 ]);
             }
         }
-
         // **Lưu nhiều ảnh phụ**
         if ($request->hasFile('support_images')) {
             foreach ($request->file('support_images') as $image) {
@@ -91,10 +87,9 @@ class ConceptController extends Controller
                 ]);
             }
         }
-
         return redirect('/admin/concept-category')->with('success', 'Concept đã được thêm mới!');
     }
-
+    // Cập nhật thông tin concept
     public function saveConcept(Request $request, $id)
     {
         $param = $request->all();
@@ -107,7 +102,7 @@ class ConceptController extends Controller
 
         $conceptFolder = public_path("image/concepts/concept_{$concept->id}");
         $supportImageFolder = "{$conceptFolder}/support_images";
-
+        // Tạo thư mục lưu trữ nếu chưa tồn tại
         if ($request->hasFile('support_images')) {
             foreach ($request->file('support_images') as $image) {
                 $extension = $image->getClientOriginalExtension();
@@ -125,11 +120,12 @@ class ConceptController extends Controller
                 ]);
             }
         }
-
-
         return redirect('/admin/concept-detail/' . $id)->with('success', 'Concept đã được cập nhật!');
     }
 
+
+
+    // Xóa concept và các ảnh liên quan
     public function deleteConcept($id)
     {
         $concept = Concept::find($id);
@@ -140,10 +136,8 @@ class ConceptController extends Controller
         }
         // Xóa ảnh liên quan trong DB
         Image::where('concept_id', $concept->id)->delete();
-
         // Xóa concept
         $concept->delete();
-
         return redirect('/admin/concept-category')->with('success', 'Đã xóa concept thành công!');
     }
 }

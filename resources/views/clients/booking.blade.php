@@ -53,7 +53,7 @@
 
                 <div class="col-md-6 mt-5">
                     <div class="wpbc_times_selector col-md-12">
-                        <h5><b>Chọn ca làm việc</b></h5>
+                        <h5><b>Chọn ca chụp hình</b></h5>
                         <div class="row">
                             @foreach ($shifts as $shift)
                             <div class="col-md-5">

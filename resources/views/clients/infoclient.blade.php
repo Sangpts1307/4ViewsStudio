@@ -23,6 +23,8 @@
 
         <form action="{{ url('/clients/info/update') }}" method="POST" class="form-label" style="max-width: 800px; margin: 0 auto;">
             @csrf
+     
+          
             <div style="display: flex; gap: 60px; margin-bottom: 15px;">
                 <div style="flex: 1;">
                     <label for="name">Họ tên</label>
@@ -60,12 +62,21 @@
                 <input type="text" id="address" name="address" class="form-control" placeholder="Địa chỉ" aria-label="Địa chỉ"
                     value="{{ $user->address ?? ''}}">
             </div>
+<div class="d-flex justify-content-between">
+    <div>
+        <a href="{{ url('/change_password') }}" class="btn btn-primary" style="background-color: #007bff; border: none; padding: 10px 20px; border-radius: 5px;">
+            Đổi mật khẩu
+        </a>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary" style="background-color: #007bff; border: none; padding: 10px 20px; border-radius: 5px;">
+            Lưu thông tin
+        </button>
+    </div>
+</div>
 
-            <div style="text-align: right;">
-                <button type="submit" class="btn btn-primary" style="background-color: #007bff; border: none; padding: 10px 20px; border-radius: 5px;">
-                    Lưu thông tin
-                </button>
-            </div>
+
+           
             <br>
         </form>
     </div>

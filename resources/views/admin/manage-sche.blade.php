@@ -47,7 +47,7 @@
                         <td>
                             @if ($schedules->has($shift->id))
                             @foreach ($schedules[$shift->id] as $schedule)
-                            {{ $schedule->user_name }}<br>
+                            {{ $schedule->user->name }}<br>
                             @endforeach
                             @else
                             Không có nhân viên trong ca này
@@ -91,8 +91,8 @@
                                 @foreach ($assignedStaffs as $staff)
                                 <div class="col-md-4">
                                     <label>
-                                        <input type="checkbox" name="employees[]" value="{{ $staff->user_id }}" checked>
-                                        {{ $staff->name }}
+                                        <input type="checkbox" name="employees[]" value="{{ $staff->user->id }}" checked>
+                                        {{ $staff->user->name }}
                                     </label>
                                 </div>
                                 @endforeach

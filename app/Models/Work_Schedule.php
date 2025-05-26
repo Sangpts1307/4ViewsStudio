@@ -10,7 +10,6 @@ class Work_Schedule extends Model
     use HasFactory;
 
     protected $table = 'work_schedules';
-
     protected $fillable = [
         'user_id', 'shift_id', 'work_day'
     ];

@@ -12,33 +12,26 @@ use Illuminate\Queue\SerializesModels;
 class MailBooking extends Mailable
 {
     use Queueable, SerializesModels;
-
     public $concept;
     public $workDay;
     public $shift;
     public $price;
     public $deposit;
-
     public function setConcept($concept) {
         $this->concept = $concept;
     }
-
     public function setWorkDay($workDay) {
         $this->workDay = $workDay;
     }
-    
     public function setShift($shift) {
         $this->shift = $shift;
     }
-
     public function setPrice($price) {
         $this->price = $price;
     }
-
     public function setDeposit($deposit) {
         $this->deposit = $deposit;
     }
-
     /**
      * Create a new message instance.
      */
@@ -46,7 +39,6 @@ class MailBooking extends Mailable
     {
         //
     }
-
     /**
      * Get the message envelope.
      */
@@ -56,7 +48,6 @@ class MailBooking extends Mailable
             subject: '「4Views Studio」',
         );
     }
-
     /**
      * Get the message content definition.
      */
@@ -73,7 +64,6 @@ class MailBooking extends Mailable
             ]
         );
     }
-
     /**
      * Get the attachments for the message.
      *
@@ -84,3 +74,5 @@ class MailBooking extends Mailable
         return [];
     }
 }
+
+

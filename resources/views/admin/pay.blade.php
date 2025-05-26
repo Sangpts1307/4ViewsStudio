@@ -55,7 +55,7 @@
             },
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    window.location.href = "http://4viewstudio.test/admin/pay-salary?month={{ $month }}&staff_id={{ $staff->user_id }}";
+                    window.location.href = "/admin/pay-salary?month={{ $month }}&staff_id={{ $staff->user_id }}";
                 });
             },
             onError: function(err) {

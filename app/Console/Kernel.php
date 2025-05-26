@@ -17,8 +17,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('app:salaries')->daily(); 
         //yearly: 1 năm chạy 1 lần, hourly, monthly
         //nếu muốn cài đặt để chạy vào 1  thời điểm cụ thể thì thay bằng dấu * và số
-        $schedule->command('app:salaries')->cron('0 0 * * *'); 
+      //  $schedule->command('app:salaries')->cron('0 0 * * *'); 
         //phút giờ ngày tháng tuần
+        // cron chay moi thang 0h
+        $schedule->command('app:concept-category')->monthlyOn(1, '0:00'); // Chạy vào ngày 1 hàng tháng lúc 00:00
     }
 
     /**

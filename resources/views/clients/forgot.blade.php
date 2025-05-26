@@ -7,6 +7,8 @@
         @endif
 
 
+
+
         @if (session('error'))
             <div class="alert alert-danger" id="alert-error">
                 {{ session('error') }}
@@ -17,14 +19,17 @@
         <form action="{{ url('/forgot') }}" method="POST" id="form-forgot">
             @csrf
 
+
             <label for="chk" aria-hidden="true">Khôi phục mật khẩu</label>
+
 
             {{-- Email --}}
             <input type="email" name="email" placeholder="Email" required
                 value="{{ old('email', session('temp_user_data.email') ?? '') }}">
 
+
             {{-- Nếu đang yêu cầu mã xác minh --}}
-            @if (session('forgot') && !session('new_password'))
+            @if (session(key: 'forgot') && !session('new_password'))
                 <input type="text" name="verification_code" placeholder="Nhập mã xác nhận" maxlength="6" required>
                 <input type="hidden" name="action" value="verify">
             @elseif (session('new_password'))
@@ -37,9 +42,10 @@
                 <input type="hidden" name="action" value="send_code">
             @endif
 
+
             <button type="submit">Tiếp tục</button>
             <div class="form-group login-back">
-                <a href="{{ url('/auth') }}" class="btn btn-link">Quay lại đăng nhập</a>
+                <a href="{{ url('/login') }}" class="btn btn-link"><i class="fa-solid fa-reply"></i> Quay lại đăng nhập</a>
             </div>
         </form>
     </div>
@@ -56,10 +62,17 @@
         background: linear-gradient(to bottom, #f5e4e6,#a2d1cc, #f1f4c3);
     }
 
+
     .login-back {
-        margin-left: 11vh;
+        text-align: center;
         margin-top: 5vh;
     }
+    .login-back a {
+               color
+: #257eb1;
+
+    }
+
 
     .auth-container .main {
         width: 420px;
@@ -71,9 +84,13 @@
     }
 
 
+
+
     .auth-container #chk {
         display: none;
     }
+
+
 
 
     .auth-container .signup {
@@ -81,6 +98,8 @@
         width: 100%;
         height: 100%;
     }
+
+
 
 
     .auth-container label {
@@ -93,6 +112,8 @@
         cursor: pointer;
         transition: .5s ease-in-out;
     }
+
+
 
 
     .auth-container input {
@@ -108,6 +129,7 @@
         border-radius: 6px;
         font-size: 1.1em;
     }
+
 
     .auth-container button {
         width: 60%;
@@ -129,10 +151,14 @@
     }
 
 
+
+
     .auth-container button:hover {
         /* background: #6d44b8; */
         background-color: #5fc1b3;
     }
+
+
 
 
     .auth-container .login {
@@ -144,6 +170,8 @@
     }
 
 
+
+
     .auth-container .login label {
         /* color: #573b8a; */
         color: #3aa89b;
@@ -151,14 +179,20 @@
     }
 
 
+
+
     .auth-container #chk:checked ~ .login {
         transform: translateY(-570px);
     }
 
 
+
+
     .auth-container #chk:checked ~ .login label {
         transform: scale(1);    
     }
+
+
 
 
     .auth-container #chk:checked ~ .signup label {
@@ -167,8 +201,14 @@
 </style>
 
 
+
+
 @endsection
 
 
 
+
+
+
  
+

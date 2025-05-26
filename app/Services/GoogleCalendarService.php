@@ -94,7 +94,7 @@ class GoogleCalendarService
             return $event->htmlLink;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-             dd($e);
+            // dd($e);
             return false;
            
         }

@@ -11,6 +11,8 @@ use App\Models\User;
 
 class ProfileController extends Controller
 {
+
+    // hiển thị form cập nhật thông tin cá nhân
     public function showForm()
     {
         $userId = session('user_id');
@@ -18,6 +20,8 @@ class ProfileController extends Controller
         return view('staff.profile', compact('user'));
     }
 
+
+    // xử lý cập nhật thông tin cá nhân
     public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -28,14 +32,13 @@ class ProfileController extends Controller
             'address' => 'nullable|string|max:255',
             'account_number' => 'nullable|string|max:255',
         ]);
-
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
-
         $user = Auth::user();
         $user->update($request->only(['name', 'email', 'phone', 'birth_date', 'address', 'account_number']));
-
         return back()->with('success', 'Cập nhật thông tin thành công!');
     }
+
+    
 }
